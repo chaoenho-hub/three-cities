@@ -1,0 +1,26 @@
+name: fetch-photo-candidates
+on:
+  push:
+    branches: [main]
+    paths: ['tools/fetch_photos.py']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/fetch_photos.py
+      - name: Commit to photo-candidates branch
+        run: |
+          mkdir /tmp/out && cp -r cand /tmp/out/
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git checkout --orphan photo-candidates
+          git rm -rf --quiet .
+          rm -rf tools .github cand
+          cp -r /tmp/out/cand .
+          git add cand
+          git commit -m "photo candidates"
+          git push -f origin photo-candidates
