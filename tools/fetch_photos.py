@@ -7,11 +7,9 @@ def get(url):
         return r.read()
 def js(url): return json.loads(get(url))
 SITES = {
- 'brtf': {'wp': [], 'q': ["78 rue de l'Université Paris", "Rue de l'Université Paris 7e"]},
- 'pompidou': {'wp': [], 'q': ['Centre Pompidou piazza', 'Centre Georges Pompidou façade rue du Renard']},
- 'mucem': {'wp': [], 'q': ['MuCEM J4 Ricciotti', 'Mucem résille béton', 'MuCEM passerelle fort Saint-Jean 2013']},
- 'lieux': {'wp': [], 'q': ['Cité des arts de la rue Marseille', 'Lieux publics Marseille spectacle']},
- 'van': {'wp': [], 'q': ['ligne verte Nantes', 'Voyage à Nantes 2019', 'Nantes ligne verte peinture sol']},
+ 'van': {'wp': [], 'q': [], 'cat': ['Category:Le Voyage à Nantes', 'Category:Ligne verte (Nantes)', 'Category:Le Voyage à Nantes 2019']},
+ 'lieux': {'wp': [], 'q': ['Cité des arts de la rue', 'Lieux publics Cité des arts'], 'cat': ['Category:Cité des arts de la rue', 'Category:Lieux publics']},
+ 'brtf': {'wp': [], 'q': ['Bureau de représentation de Taipei en France', 'Taipei Representative Office France'], 'cat': []},
 }
 def pageimage(lang, title):
     u = f'https://{lang}.wikipedia.org/w/api.php?' + urllib.parse.urlencode({'action':'query','prop':'pageimages','piprop':'name','titles':title,'redirects':1,'format':'json'})
@@ -20,6 +18,9 @@ def pageimage(lang, title):
 def search(q, n=4):
     u = 'https://commons.wikimedia.org/w/api.php?' + urllib.parse.urlencode({'action':'query','list':'search','srnamespace':6,'srsearch':q+' filetype:bitmap','srlimit':n,'format':'json'})
     return [h['title'][5:] for h in js(u).get('query',{}).get('search',[])]
+def catmembers(c, n=6):
+    u = 'https://commons.wikimedia.org/w/api.php?' + urllib.parse.urlencode({'action':'query','list':'categorymembers','cmtitle':c,'cmtype':'file','cmlimit':n,'format':'json'})
+    return [h['title'][5:] for h in js(u).get('query',{}).get('categorymembers',[])]
 def info(name):
     u = 'https://commons.wikimedia.org/w/api.php?' + urllib.parse.urlencode({'action':'query','titles':'File:'+name,'prop':'imageinfo','iiprop':'url|extmetadata|mime|size','iiurlwidth':1000,'format':'json'})
     for p in js(u).get('query',{}).get('pages',{}).values():
@@ -40,8 +41,13 @@ for sid, cfg in SITES.items():
             for n in search(q):
                 if n not in names: names.append(n)
         except Exception as e: print('search fail', sid, q, e)
+    for c in cfg.get('cat', []):
+        try:
+            for n in catmembers(c):
+                if n not in names: names.append(n)
+        except Exception as e: print('cat fail', sid, c, e)
     meta[sid] = []
-    for i, n in enumerate(names[:6]):
+    for i, n in enumerate(names[:10]):
         try:
             ii = info(n)
             if not ii or ii.get('mime') not in ('image/jpeg','image/png','image/webp'): continue
