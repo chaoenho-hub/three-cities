@@ -1,0 +1,590 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>法國三城觀察 · Three Cities Field Notes</title><meta name="description" content="賀昭恩 · 青年百億海外圓夢基金計畫 M-4-5 藝起共築理想城市：以三種尺度與五種城市意象觀察巴黎、南特、馬賽的文化驅動都市再生。"><meta property="og:title" content="法國三城觀察"><meta property="og:description" content="賀昭恩 · 青年百億海外圓夢基金計畫 M-4-5 藝起共築理想城市：以三種尺度與五種城市意象觀察巴黎、南特、馬賽的文化驅動都市再生。"><style>html{color-scheme:light}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style><script>window.__STATIC__=true;</script></head><body>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap">
+<style>
+/* Layout: 田野筆記本——頂部黏性分頁（觀點／路線／記錄／手冊），單欄內容，三城以各自色彩標記。 */
+:root{
+  --bg:#f4f5f7; --surface:#ffffff; --ink:#1d2129; --muted:#5d6472; --line:#dde0e6; --soft:#eef0f4;
+  --par:#2f5d8a; --nan:#2e8b7a; --mar:#c8743a; --accent:#2f5d8a; --accent-ink:#ffffff;
+  --warn:#a14a1f; --ok:#2e7d4f; --water:#bcd3e6; --demo:#fff4d6; --demo-ink:#6b4a00;
+  --display:"Noto Serif TC","Songti TC","PMingLiU",serif;
+  --body:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#12151b; --surface:#1a1e26; --ink:#e7eaf0; --muted:#9aa2b1; --line:#2c313c; --soft:#222733;
+  --par:#7fa9d6; --nan:#6cc3b1; --mar:#e3a073; --accent:#7fa9d6; --accent-ink:#0f1218;
+  --warn:#f0a07a; --ok:#7fcf9e; --water:#2b4257; --demo:#3a3016; --demo-ink:#f3dc9c; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12151b; --surface:#1a1e26; --ink:#e7eaf0; --muted:#9aa2b1; --line:#2c313c; --soft:#222733;
+  --par:#7fa9d6; --nan:#6cc3b1; --mar:#e3a073; --accent:#7fa9d6; --accent-ink:#0f1218;
+  --warn:#f0a07a; --ok:#7fcf9e; --water:#2b4257; --demo:#3a3016; --demo-ink:#f3dc9c; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.75;margin:0;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 5rem;-webkit-text-size-adjust:100%}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--surface)}
+.wrap{max-width:52rem;margin:0 auto;min-width:0}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--surface);border-bottom:1px solid var(--line);
+  margin-inline:calc(-1*max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px))}
+.bar{max-width:52rem;margin:0 auto;display:flex;align-items:center;gap:.75rem;padding-block:.55rem;flex-wrap:wrap}
+.brand{font-family:var(--display);font-weight:700;font-size:1.05rem;white-space:nowrap}
+.brand small{font-family:var(--body);font-weight:400;color:var(--muted);font-size:.72rem;margin-left:.35rem;letter-spacing:.03em}
+nav.tabs{display:flex;gap:.25rem;margin-left:auto;flex-wrap:wrap}
+nav.tabs a{font-size:.88rem;line-height:1.2;text-decoration:none;color:var(--ink);padding:.45rem .7rem;border-radius:.45rem;border:1px solid transparent;display:flex;flex-direction:column;align-items:center}
+nav.tabs a span{font-size:.62rem;color:var(--muted);letter-spacing:.04em}
+nav.tabs a[aria-current="page"]{background:var(--accent);color:var(--accent-ink)}
+nav.tabs a[aria-current="page"] span{color:var(--accent-ink);opacity:.8}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+h1{font-family:var(--display);font-size:clamp(1.6rem,4.5vw,2.3rem);line-height:1.3;margin:.2rem 0 .5rem;text-wrap:balance}
+h2{font-family:var(--display);font-size:1.3rem;margin:2.2rem 0 .6rem;text-wrap:balance}
+h3{font-size:1.02rem;margin:0 0 .3rem}
+.en{color:var(--muted);font-size:.85em}
+.eyebrow{font-size:.75rem;letter-spacing:.08em;color:var(--muted);margin:0}
+p{margin:.5rem 0}
+.hero{padding-block:1.6rem .4rem}
+.lede{max-width:40rem}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.8rem}
+@media (max-width:720px){.grid3{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:.6rem;padding:.9rem 1rem;min-width:0}
+.city{border-top:4px solid var(--c)}
+.city .scale{font-size:.78rem;color:var(--c);font-weight:700;letter-spacing:.04em}
+.mapwrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:1rem;align-items:center}
+@media (max-width:720px){.mapwrap{grid-template-columns:1fr}}
+svg.map{width:100%;max-width:340px;height:auto;display:block;margin:0 auto}
+.lynch{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.5rem}
+@media (max-width:720px){.lynch{grid-template-columns:repeat(2,minmax(0,1fr))}.lynch .card:last-child{grid-column:span 2}.lynch .card:last-child .ico{max-width:7.5rem}}
+.lynch .card{padding:.7rem .8rem}
+.lynch b{display:block;font-size:1rem}
+.ico{display:block;width:100%;max-width:7.5rem;height:auto;margin:0 0 .4rem;color:var(--ink)}
+.ico .fill{fill:var(--soft)} .ico .acc{stroke:var(--accent)} .ico .accf{fill:var(--accent)}
+.ico.ico-s{width:2.6rem;max-width:none;height:auto;flex:none;margin:0}
+.elrow .eh .lead{display:flex;align-items:center;gap:.5rem}
+.lynch .en{display:block;font-size:.72rem;letter-spacing:.05em;text-transform:uppercase}
+.qs{display:grid;gap:.5rem}
+.q{display:grid;grid-template-columns:3rem minmax(0,1fr);gap:.6rem;align-items:start}
+.qtag{font-weight:700;font-variant-numeric:tabular-nums;background:var(--soft);border-radius:.4rem;text-align:center;padding:.15rem 0}
+ol.flow{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.6rem;counter-reset:f}
+@media (max-width:720px){ol.flow{grid-template-columns:1fr 1fr}}
+ol.flow li{counter-increment:f;background:var(--surface);border:1px solid var(--line);border-radius:.6rem;padding:.7rem .8rem;font-size:.9rem;min-width:0}
+ol.flow li::before{content:counter(f);display:inline-grid;place-items:center;width:1.5rem;height:1.5rem;border-radius:50%;background:var(--accent);color:var(--accent-ink);font-size:.8rem;margin-right:.4rem}
+.demo{background:var(--demo);color:var(--demo-ink);border:1px dashed currentColor;border-radius:.6rem;padding:.8rem 1rem}
+.demo .badge{font-size:.72rem;font-weight:700;letter-spacing:.06em}
+.chips{display:flex;flex-wrap:wrap;gap:.35rem}
+.chip{font:inherit;font-size:.82rem;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:2rem;padding:.25rem .7rem;cursor:pointer;line-height:1.4}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+.chip.static{cursor:default}
+.tag{font-size:.75rem;border-radius:1rem;padding:.05rem .55rem;background:var(--soft);color:var(--ink);white-space:nowrap}
+.dot{display:inline-block;width:.6rem;height:.6rem;border-radius:50%;background:var(--c);margin-right:.35rem;vertical-align:.05rem}
+.day{display:grid;grid-template-columns:4.2rem minmax(0,1fr);gap:.6rem;padding:.6rem 0;border-bottom:1px solid var(--line)}
+.day .d{font-variant-numeric:tabular-nums;font-weight:700}
+.day .d small{display:block;font-weight:400;color:var(--muted);font-size:.75rem}
+.sitebtn{font:inherit;text-align:left;width:100%;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--c);border-radius:.45rem;padding:.5rem .7rem;margin:.25rem 0;cursor:pointer;color:var(--ink);display:flex;gap:.5rem;align-items:center;justify-content:space-between}
+.routegrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:1rem;align-items:start;margin-top:.6rem}
+.listcol{min-width:0}
+.mapcol{position:sticky;top:calc(env(safe-area-inset-top,0px) + var(--hdr,64px) + 8px);min-width:0;z-index:5}
+.mappanel{background:var(--surface);border:1px solid var(--line);border-radius:.6rem;padding:.5rem .6rem .6rem}
+.maptabs{display:flex;gap:.3rem;flex-wrap:wrap;margin-bottom:.3rem}
+.maptabs button{font:inherit;font-size:.78rem;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:2rem;padding:.15rem .6rem;cursor:pointer}
+.maptabs button[aria-pressed="true"]{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+.citymap{width:100%;height:auto;display:block;border-radius:.4rem;background:var(--bg)}
+.citymap .river{fill:none;stroke:var(--water);stroke-linecap:round;stroke-linejoin:round}
+.citymap .sea{fill:var(--water);opacity:.55}
+.citymap .ring{fill:none;stroke:var(--line);stroke-width:2;stroke-dasharray:5 4}
+.citymap .lab{font-size:11px;fill:var(--muted)}
+.citymap .num{font-size:10px;font-weight:700;fill:#fff;text-anchor:middle;dominant-baseline:central;pointer-events:none}
+.citymap .pt{cursor:pointer}
+.citymap .pt circle.core{stroke:var(--surface);stroke-width:2}
+.citymap .pt.sel circle.core{stroke:var(--ink);stroke-width:2.5}
+.citymap .glow{fill:var(--c);opacity:0}
+.citymap .pt.sel .glow{opacity:.35;animation:pulse 1.4s ease-out infinite}
+.citymap .sellab{font-size:13px;font-weight:700;fill:var(--ink);paint-order:stroke;stroke:var(--bg);stroke-width:4px}
+@keyframes pulse{0%{r:9;opacity:.5}100%{r:22;opacity:0}}
+@media (prefers-reduced-motion:reduce){.citymap .pt.sel .glow{animation:none;opacity:.35}}
+.mapinfo{font-size:.85rem;margin-top:.4rem;display:flex;gap:.5rem;align-items:center;justify-content:space-between;flex-wrap:wrap;min-height:2rem}
+.sitebtn[aria-current="true"]{box-shadow:0 0 0 2px var(--c);background:color-mix(in srgb,var(--c) 10%,var(--surface))}
+.sitebtn .no{display:inline-grid;place-items:center;min-width:1.35rem;height:1.35rem;border-radius:50%;background:var(--c);color:#fff;font-size:.72rem;font-weight:700;margin-right:.4rem;font-variant-numeric:tabular-nums}
+@media (max-width:720px){.routegrid{grid-template-columns:1fr}.mapcol{top:calc(env(safe-area-inset-top,0px) + var(--hdr,96px));margin-inline:-2px}.citymap{max-height:38vh}}
+.sitebtn .cnt{font-size:.75rem;color:var(--muted);white-space:nowrap}
+dialog{border:1px solid var(--line);border-radius:.8rem;background:var(--surface);color:var(--ink);padding:0;width:min(40rem,calc(100vw - 32px));max-height:calc(100vh - 48px)}
+dialog::backdrop{background:color-mix(in srgb,#000 45%,transparent)}
+.dlg{padding:1.1rem 1.2rem;overflow:auto;max-height:calc(100vh - 60px)}
+.dlg .close{float:right}
+label.f{display:block;font-weight:500;margin:.9rem 0 .3rem;font-size:.92rem}
+select,textarea,input[type=text]{font:inherit;width:100%;border:1px solid var(--line);border-radius:.45rem;padding:.55rem .65rem;background:var(--surface);color:var(--ink)}
+textarea{min-height:8rem;resize:vertical}
+.btn{font:inherit;font-size:.92rem;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:.45rem;padding:.5rem .9rem;cursor:pointer}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:500}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.row{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center}
+.photos{display:grid;grid-template-columns:repeat(auto-fill,minmax(8rem,1fr));gap:.5rem;margin-top:.5rem}
+.photos figure{margin:0;min-width:0}
+.photos img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:.35rem;display:block;background:var(--soft)}
+.photos figcaption{font-size:.78rem;color:var(--muted)}
+.photos input{font-size:.8rem;padding:.3rem .4rem;margin-top:.2rem}
+.note{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--c);border-radius:.5rem;padding:.75rem .9rem;margin:.6rem 0}
+.note .meta{font-size:.78rem;color:var(--muted);display:flex;gap:.5rem;flex-wrap:wrap;align-items:center}
+.note .txt{white-space:pre-wrap;overflow-wrap:anywhere}
+.status{font-size:.85rem;color:var(--muted);min-height:1.4em}
+.status.err{color:var(--warn)} .status.ok{color:var(--ok)}
+.matrix{overflow-x:auto;border:1px solid var(--line);border-radius:.5rem;background:var(--surface)}
+.matrix table{border-collapse:collapse;width:100%;min-width:28rem;font-variant-numeric:tabular-nums}
+.matrix th,.matrix td{padding:.45rem .6rem;border-bottom:1px solid var(--line);text-align:center;font-size:.88rem}
+.matrix th:first-child,.matrix td:first-child{text-align:left}
+.matrix td.v{background:color-mix(in srgb,var(--c) calc(var(--a)*1%),transparent)}
+.hb-site{margin:1.2rem 0 1.6rem;padding-top:.8rem;border-top:2px solid var(--c)}
+.hb-site .pre{font-size:.9rem;color:var(--muted)}
+.draft{background:var(--soft);border-radius:.5rem;padding:.7rem .9rem;margin-top:.6rem}
+.draft textarea{min-height:6rem;margin-top:.3rem}
+.empty{color:var(--muted);font-size:.9rem;padding:.6rem 0}
+.banner{font-size:.85rem;color:var(--muted);background:var(--surface);border:1px solid var(--line);border-radius:.5rem;padding:.55rem .8rem;margin:.8rem 0}
+.stats{display:flex;gap:1.2rem;flex-wrap:wrap;margin:.6rem 0}
+.stats div{font-size:.8rem;color:var(--muted)}
+.stats b{display:block;font-size:1.4rem;color:var(--ink);font-variant-numeric:tabular-nums}
+.elrows{display:grid;gap:.5rem}
+.elrow{background:var(--surface);border:1px solid var(--line);border-radius:.55rem;padding:.55rem .7rem;min-width:0}
+.elrow .eh{display:flex;align-items:center;justify-content:space-between;gap:.5rem;flex-wrap:wrap}
+.elrow .eh .en{font-size:.75rem}
+.elrow .photos{margin-top:.4rem}
+.elrow .photos:empty{display:none}
+.phbtn{font-size:.8rem;padding:.3rem .65rem;cursor:pointer}
+.phbtn[aria-disabled="true"]{opacity:.5;cursor:not-allowed}
+.org{font-size:.88rem;background:var(--soft);border-radius:.45rem;padding:.55rem .75rem;margin:.5rem 0}
+footer{margin-top:3rem;font-size:.78rem;color:var(--muted)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<header class="top"><div class="bar">
+  <div class="brand">法國三城觀察<small>Three Cities Field Notes</small></div>
+  <nav class="tabs" aria-label="分頁">
+    <a href="#overview" data-v="overview">觀點<span>Lens</span></a>
+    <a href="#route" data-v="route">路線<span>Route</span></a>
+    <a href="#record" data-v="record">記錄<span>Record</span></a>
+    <a href="#handbook" data-v="handbook">手冊<span>Handbook</span></a>
+  </nav>
+</div></header>
+
+<div class="wrap">
+<!-- ================= OVERVIEW ================= -->
+<section id="v-overview" class="view">
+  <div class="hero">
+    <p class="eyebrow">青年百億海外圓夢基金計畫 · 海外翱翔組 M-4-5 藝起共築理想城市 · 116/5/30–6/16</p>
+    <h1>文化如何成為都市再生的驅動力？</h1>
+    <p class="en">How does culture drive urban regeneration? Field notes across Paris, Nantes and Marseille.</p>
+    <p class="lede">這是我為 M-4-5 見習設計的田野工具。我把三座城市讀成三種尺度的對照，並以凱文．林區《城市意象》的五種城市意象，觀察每座城市如何塑造自明性。見習期間，我在每一站用它記錄照片、標註與筆記，返國後整理成圖解式案例手冊《文化驅動的都市再生：法國三城觀察》。</p>
+  </div>
+
+  <h2>三座城市，三種尺度 <span class="en">Three cities, three scales</span></h2>
+  <div class="mapwrap">
+    <svg class="map" viewBox="0 0 312 300" role="img" aria-label="法國地圖：巴黎、南特、馬賽與行程方向">
+      <path d="M155.7,13.8 L143.2,16.5 L138.4,22.7 L137.5,37.5 L128.5,45.0 L109.7,57.0 L100.1,61.2 L83.7,59.8 L76.6,52.8 L70.3,50.8 L72.2,70.9 L78.9,81.0 L69.0,80.7 L63.2,79.8 L49.2,77.1 L41.5,75.7 L31.3,78.5 L16.0,89.6 L16.9,97.7 L24.2,104.4 L43.4,106.6 L48.2,113.3 L60.7,112.8 L65.5,119.2 L65.5,128.1 L73.2,140.6 L85.7,150.4 L87.6,165.2 L85.7,168.5 L83.7,192.2 L82.8,210.3 L78.9,224.3 L73.6,227.9 L82.8,236.8 L94.3,241.0 L121.2,242.4 L135.6,253.6 L146.1,256.4 L167.2,254.1 L166.3,246.6 L165.3,238.2 L169.2,234.0 L178.8,227.1 L188.3,224.3 L199.9,228.5 L210.8,229.9 L221.6,235.4 L228.7,235.4 L235.4,232.7 L242.1,222.9 L247.3,218.7 L251.7,216.5 L242.1,204.8 L235.4,196.4 L243.1,186.6 L238.3,179.7 L244.0,169.9 L239.2,157.4 L241.1,149.0 L224.8,150.4 L224.8,143.4 L231.5,142.0 L224.8,137.8 L241.1,121.1 L242.1,112.8 L252.6,110.0 L253.6,98.8 L265.1,72.3 L242.1,66.7 L230.6,58.4 L219.1,55.6 L211.4,57.0 L203.7,45.8 L200.8,40.2 L188.3,36.1 L176.8,31.9 L168.2,21.3 L157.6,19.3 Z" fill="var(--soft)" stroke="var(--line)" stroke-width="1.2"/>
+      <path d="M287.2,239.6 L290.1,249.4 L288.2,268.9 L284.3,282.8 L275.7,278.7 L272.8,260.5 L273.8,249.4 Z" fill="var(--soft)" stroke="var(--line)" stroke-width="1.2"/>
+      <path d="M152.8,74.8 L78.0,120.6" stroke="var(--muted)" stroke-width="1.4" stroke-dasharray="4 4" fill="none"/>
+      <path d="M78.0,120.6 Q130,200 210.8,229.9" stroke="var(--muted)" stroke-width="1.4" stroke-dasharray="4 4" fill="none"/>
+      <path d="M210.8,229.9 Q215,140 152.8,74.8" stroke="var(--muted)" stroke-width="1" stroke-dasharray="2 5" fill="none"/>
+      <circle cx="152.8" cy="74.8" r="9" fill="var(--par)"/><text x="166.8" y="74.8" dy="4" font-size="13" fill="var(--ink)" font-weight="700">巴黎</text>
+      <circle cx="78.0" cy="120.6" r="9" fill="var(--nan)"/><text x="64.0" y="120.6" dy="4" font-size="13" fill="var(--ink)" font-weight="700" text-anchor="end">南特</text>
+      <circle cx="210.8" cy="229.9" r="9" fill="var(--mar)"/><text x="224.8" y="229.9" dy="4" font-size="13" fill="var(--ink)" font-weight="700">馬賽</text>
+      <text x="166.8" y="92.8" font-size="10" fill="var(--muted)">5/30–6/6、6/13–6/14</text>
+      <text x="64.0" y="138.6" font-size="10" fill="var(--muted)" text-anchor="end">6/7–6/9</text>
+      <text x="224.8" y="247.9" font-size="10" fill="var(--muted)">6/9–6/12</text>
+    </svg>
+    <div class="grid3" style="grid-template-columns:1fr">
+      <div class="card city" style="--c:var(--par)"><div class="scale">巴黎 · 基礎設施與機構的尺度</div>
+        <p>大型建設如何在規劃階段為藝術與公共空間預留位置。Grand Paris Express 讓新車站由藝術家與建築師搭檔設計，在郊區創造新的節點與地標。</p></div>
+      <div class="card city" style="--c:var(--nan)"><div class="scale">南特 · 整座島嶼的尺度</div>
+        <p>SAMOA 與文化團隊如何協作再生 337 公頃的前工業島。Le Voyage à Nantes 的地面綠線，把「路徑」直接畫進城市。</p></div>
+      <div class="card city" style="--c:var(--mar)"><div class="scale">馬賽 · 單一園區與社群的尺度</div>
+        <p>菸草工廠轉型的 La Friche 以合作社治理；MUCEM 把港口邊緣變成市民可停留的濱水空間。</p></div>
+    </div>
+  </div>
+
+  <h2>觀察工具：五種城市意象 <span class="en">Kevin Lynch, The Image of the City (1960)</span></h2>
+  <p>一座城市能否被理解、被記住，取決於它的可意象性（imageability）。每筆記錄都可以標註觀察到的城市意象，並為每種意象拍照；手冊會自動統計三座城市各自強化了哪些意象。</p>
+  <div class="lynch" id="lynch-cards"></div>
+
+  <h2>三個研究問題 <span class="en">Research questions</span></h2>
+  <div class="qs" id="q-list"></div>
+
+  <h2>從現場到手冊 <span class="en">From field to handbook</span></h2>
+  <ol class="flow">
+    <li><b>現場記錄</b><br>每一站拍照、口述或打字筆記。</li>
+    <li><b>標註</b><br>勾選五種城市意象並分別拍照，標註對應的研究問題。</li>
+    <li><b>Claude 整理</b><br>把當站筆記整理成中英文手冊段落，再由我修改。</li>
+    <li><b>手冊與分享</b><br>依城市彙整、匯出，用於 6/14 發表與返國分享。</li>
+  </ol>
+  <h2>記錄示範 <span class="en">Sample entry</span></h2>
+  <div class="demo">
+    <div class="badge">示範畫面，並非實際記錄 · SAMPLE, NOT A REAL ENTRY</div>
+    <p style="margin:.4rem 0"><b>Le Voyage à Nantes · 6/9 · 南特</b></p>
+    <div class="chips"><span class="tag">路徑 Paths</span><span class="tag">地標 Landmarks</span><span class="tag">Q3</span></div>
+    <p>（示範）沿綠線步行時記錄：綠線經過哪些街區、哪些作品被串起、居民與遊客如何使用沿線空間；並追問這條路線由誰規劃、經費從哪裡來、每年如何更新。</p>
+  </div>
+  <footer>賀昭恩 · 建築設計師 · 本工具為 M-4-5 見習計畫的一部分。作品集：<a href="https://chaoenho-hub.github.io/portfolio/" target="_blank" rel="noopener">chaoenho-hub.github.io/portfolio</a></footer>
+</section>
+
+<!-- ================= ROUTE ================= -->
+<section id="v-route" class="view" hidden>
+  <h2>18 天路線 <span class="en">18-day route</span></h2>
+  <p>依小簡章行程整理，細節可能調整。點選站點，地圖上的位置會亮起；按「查看詳情」可看我帶去的問題、機構的運作方式與現場記錄。</p>
+  <div class="chips" id="city-filter" role="group" aria-label="依城市篩選"></div>
+  <div class="routegrid">
+    <div class="mapcol"><div class="mappanel" id="mappanel">
+      <div class="maptabs" id="maptabs" role="group" aria-label="切換城市地圖"></div>
+      <svg id="citymap" class="citymap" viewBox="0 0 400 300" role="img" aria-label="城市地圖"></svg>
+      <div class="mapinfo" id="mapinfo"><span class="en">點選站點或地圖上的點</span></div>
+    </div></div>
+    <div id="days" class="listcol"></div>
+  </div>
+</section>
+
+<!-- ================= RECORD ================= -->
+<section id="v-record" class="view" hidden>
+  <h2>現場記錄 <span class="en">Field record</span></h2>
+  <div id="rec-banner" class="banner">正在連線資料庫…</div>
+  <form id="rec-form" hidden>
+    <label class="f" for="f-site">站點 Site</label>
+    <select id="f-site" required></select>
+    <label class="f">五種城市意象 <span class="en">Five elements of the city image</span></label>
+    <p style="font-size:.85rem;color:var(--muted);margin:0 0 .4rem">點選這則記錄觀察到的意象，並可為每種意象拍照。</p>
+    <div class="elrows" id="f-el"></div>
+    <label class="f">研究問題 Research questions</label>
+    <div class="chips" id="f-q"></div>
+    <label class="f" for="f-text">文字說明 Notes</label>
+    <textarea id="f-text" placeholder="看到什麼、聽到什麼、誰在使用這個空間、由誰營運…"></textarea>
+    <div class="row" style="margin-top:.4rem">
+      <button type="button" class="btn" id="mic" hidden>🎙 語音輸入</button>
+      <span class="status" id="mic-status"></span>
+    </div>
+    <div class="row" style="margin-top:1rem">
+      <button type="submit" class="btn primary" id="save">儲存記錄</button>
+      <button type="button" class="btn" id="reset">清空</button>
+      <span class="status" id="save-status"></span>
+    </div>
+  </form>
+  <h2>最近的記錄 <span class="en">Recent</span></h2>
+  <div id="recent"><p class="empty">尚無記錄。見習期間（116/5/30–6/16）在每一站新增。</p></div>
+</section>
+
+<!-- ================= HANDBOOK ================= -->
+<section id="v-handbook" class="view" hidden>
+  <p class="eyebrow">圖解式案例手冊 · Illustrated casebook</p>
+  <h1 style="font-size:clamp(1.4rem,4vw,1.9rem)">文化驅動的都市再生：法國三城觀察</h1>
+  <p class="en">Culture-led Urban Regeneration: Observations from Three French Cities</p>
+  <div class="stats" id="stats"></div>
+  <div class="row"><button class="btn" id="export" hidden>匯出手冊（Markdown）</button><span class="status" id="export-status"></span></div>
+  <h2>城市意象矩陣 <span class="en">Image matrix</span></h2>
+  <p>每格是該城市中標註此意象的記錄數，顏色越深代表觀察越多。</p>
+  <div class="matrix" id="matrix"></div>
+  <div id="hb"></div>
+</section>
+</div>
+
+<dialog id="site-dlg"><div class="dlg" id="site-body"></div></dialog>
+
+<script>
+(function(){
+"use strict";
+var DATA={"sites": [{"id": "brtf", "zh": "駐法國臺北代表處", "en": "Bureau de Représentation de Taipei en France", "city": "paris", "dates": ["5/31"], "group": "計畫主辦與接待", "ask": "這些機構如何把法臺資源與在地創作者、城市單位接在一起？", "q": [], "el": [], "org": null, "learn": null, "ll": [48.8575, 2.317], "area": ""}, {"id": "104", "zh": "104 藝術中心", "en": "CENTQUATRE-PARIS", "city": "paris", "dates": ["6/1", "6/14"], "group": "計畫主辦與接待", "ask": "這些機構如何把法臺資源與在地創作者、城市單位接在一起？", "q": ["Q2"], "el": ["node"], "org": "巴黎市政府的藝術場館。提供藝術家駐村與製作空間、開放市民使用的自由創作空間，並設有新創孵化器；文化工程團隊也對外提供顧問服務。總監 José-Manuel Gonçalvès 同時負責把藝術融入大巴黎快線。", "learn": "市立藝術機構如何同時成為社區空間、創作基地與文化政策的推手", "ll": [48.8899, 2.3714], "area": ""}, {"id": "tokyo", "zh": "東京宮", "en": "Palais de Tokyo", "city": "paris", "dates": ["6/2"], "group": "藝術機構與創作支持", "ask": "藝術機構如何回應城市議題、支持創作者？", "q": ["Q1"], "el": ["landmark"], "org": null, "learn": null, "ll": [48.8641, 2.2966], "area": ""}, {"id": "gpe", "zh": "大巴黎快線", "en": "Grand Paris Express", "city": "paris", "dates": ["6/2"], "group": "大型建設與都市治理", "ask": "藝術與公共空間如何在規劃階段被預留？由誰決策？", "q": ["Q2"], "el": ["node", "path"], "org": "68 座新車站預計於 2030 年前完成。每站由一組建築師與藝術家搭檔，藝術家在設計階段就加入；設計研究由大巴黎公司（SGP）出資，作品製作經費由企業透過基金會贊助。", "learn": "藝術在哪個時點、以什麼經費機制進入公共工程", "ll": [48.9183, 2.3437], "area": "位置示意：以 Saint-Denis Pleyel 樞紐站標示"}, {"id": "cartoucherie", "zh": "卡圖什里劇場群", "en": "La Cartoucherie", "city": "paris", "dates": ["6/2"], "group": "舊工業與舊交通空間", "ask": "空間改造與文化營運，在哪個階段、由誰一起設計？", "q": ["Q1"], "el": ["district"], "org": null, "learn": null, "ll": [48.8339, 2.4475], "area": ""}, {"id": "nourry", "zh": "藝術家 Prune Nourry", "en": "Prune Nourry studio visit", "city": "paris", "dates": ["6/3"], "group": "藝術機構與創作支持", "ask": "藝術機構如何回應城市議題、支持創作者？", "q": ["Q3"], "el": [], "org": null, "learn": null, "ll": null, "area": "藝術家工作室，位置依行程安排"}, {"id": "pompidou", "zh": "龐畢度藝術中心", "en": "Centre Pompidou", "city": "paris", "dates": ["6/3"], "group": "藝術機構與創作支持", "ask": "藝術機構如何回應城市議題、支持創作者？", "q": ["Q3"], "el": ["landmark"], "org": null, "learn": null, "ll": [48.8606, 2.3522], "area": ""}, {"id": "walk", "zh": "大巴黎區城市走讀", "en": "Greater Paris city walk", "city": "paris", "dates": ["6/4"], "group": "大型建設與都市治理", "ask": "藝術與公共空間如何在規劃階段被預留？由誰決策？", "q": ["Q2", "Q3"], "el": ["path", "edge"], "org": null, "learn": null, "ll": null, "area": "走讀路線依當天安排"}, {"id": "nuit", "zh": "白晝之夜", "en": "Nuit Blanche 2027", "city": "paris", "dates": ["6/5"], "group": "公共空間與市民參與", "ask": "文化活動如何連結居民的日常？", "q": ["Q3"], "el": ["path", "node"], "org": null, "learn": null, "ll": null, "area": "全市各處的夜間藝術活動"}, {"id": "orsay", "zh": "奧賽博物館", "en": "Musée d’Orsay", "city": "paris", "dates": ["6/6"], "group": "舊工業與舊交通空間", "ask": "空間改造與文化營運，在哪個階段、由誰一起設計？", "q": ["Q1"], "el": ["landmark"], "org": null, "learn": null, "ll": [48.86, 2.3266], "area": ""}, {"id": "lu", "zh": "Le Lieu Unique", "en": "Le Lieu Unique", "city": "nantes", "dates": ["6/7"], "group": "舊工業與舊交通空間", "ask": "空間改造與文化營運，在哪個階段、由誰一起設計？", "q": ["Q1"], "el": ["landmark"], "org": null, "learn": null, "ll": [47.2153, -1.5455], "area": ""}, {"id": "samoa", "zh": "SAMOA 與南特島", "en": "SAMOA · Île de Nantes", "city": "nantes", "dates": ["6/8"], "group": "大型建設與都市治理", "ask": "藝術與公共空間如何在規劃階段被預留？由誰決策？", "q": ["Q1", "Q3"], "el": ["district", "edge"], "org": "受南特都會區委託的公營開發公司（SPL），負責 Île de Nantes 的長期再開發。2007 年起推動「創意區」，聚集大學、企業與藝術工作者，並將 Alstom 舊廠房改為約 6,000 平方公尺的創意產業辦公空間。", "learn": "公部門開發公司如何把文化產業納入都市再生", "ll": [47.2058, -1.557], "area": ""}, {"id": "machines", "zh": "南特島機械", "en": "Les Machines de l’Île", "city": "nantes", "dates": ["6/8"], "group": "舊工業與舊交通空間", "ask": "空間改造與文化營運，在哪個階段、由誰一起設計？", "q": ["Q1"], "el": ["landmark"], "org": null, "learn": null, "ll": [47.2066, -1.5641], "area": ""}, {"id": "qc", "zh": "創意區", "en": "Quartier de la Création", "city": "nantes", "dates": ["6/8"], "group": "大型建設與都市治理", "ask": "藝術與公共空間如何在規劃階段被預留？由誰決策？", "q": ["Q1", "Q3"], "el": ["district"], "org": null, "learn": null, "ll": [47.2045, -1.552], "area": ""}, {"id": "van", "zh": "南特之旅綠線", "en": "Le Voyage à Nantes", "city": "nantes", "dates": ["6/9"], "group": "大型建設與都市治理", "ask": "藝術與公共空間如何在規劃階段被預留？由誰決策？", "q": ["Q3"], "el": ["path", "landmark"], "org": null, "learn": null, "ll": null, "area": "綠線串聯全市，起點與路線依當天安排"}, {"id": "mucem", "zh": "歐洲與地中海文明博物館", "en": "MUCEM", "city": "marseille", "dates": ["6/10"], "group": "公共空間與市民參與", "ask": "文化活動如何連結居民的日常？", "q": ["Q3"], "el": ["edge", "landmark"], "org": null, "learn": null, "ll": [43.2969, 5.361], "area": ""}, {"id": "lieux", "zh": "街頭藝術城", "en": "Cité des Arts de la Rue · Lieux Publics", "city": "marseille", "dates": ["6/10"], "group": "公共空間與市民參與", "ask": "文化活動如何連結居民的日常？", "q": ["Q3"], "el": ["district"], "org": null, "learn": null, "ll": [43.335, 5.3743], "area": ""}, {"id": "friche", "zh": "La Friche la Belle de Mai", "en": "La Friche la Belle de Mai", "city": "marseille", "dates": ["6/11"], "group": "舊工業與舊交通空間", "ask": "空間改造與文化營運，在哪個階段、由誰一起設計？", "q": ["Q1", "Q3"], "el": ["node", "district"], "org": "前身為 SEITA 菸草工廠，1990 年關閉、1992 年起發展文化計畫，2007 年改組為集體利益合作社（SCIC）。現有 70 個常駐組織，每年約 45 萬人次造訪、舉辦 600 多場活動。", "learn": "合作社治理如何讓多個團隊共同經營大型舊工業空間", "ll": [43.3105, 5.3907], "area": ""}, {"id": "camargo", "zh": "Camargo 基金會", "en": "Fondation Camargo · Cassis", "city": "marseille", "dates": ["6/12"], "group": "藝術機構與創作支持", "ask": "藝術機構如何回應城市議題、支持創作者？", "q": ["Q3"], "el": ["edge"], "org": null, "learn": null, "ll": [43.2147, 5.5389], "area": ""}], "days": [{"date": "5/31", "wd": "日", "note": "抵達巴黎；拜會駐法國臺北代表處與主辦機構交流", "sites": ["brtf"]}, {"date": "6/1", "wd": "一", "note": "分組並確認研究問題", "sites": ["104"]}, {"date": "6/2", "wd": "二", "note": "", "sites": ["tokyo", "gpe", "cartoucherie"]}, {"date": "6/3", "wd": "三", "note": "", "sites": ["nourry", "pompidou"]}, {"date": "6/4", "wd": "四", "note": "駐村藝術家交流", "sites": ["walk"]}, {"date": "6/5", "wd": "五", "note": "休息日", "sites": ["nuit"]}, {"date": "6/6", "wd": "六", "note": "休息日，自由探索", "sites": ["orsay"]}, {"date": "6/7", "wd": "日", "note": "前往南特", "sites": ["lu"]}, {"date": "6/8", "wd": "一", "note": "", "sites": ["samoa", "machines", "qc"]}, {"date": "6/9", "wd": "二", "note": "之後前往馬賽", "sites": ["van"]}, {"date": "6/10", "wd": "三", "note": "", "sites": ["mucem", "lieux"]}, {"date": "6/11", "wd": "四", "note": "", "sites": ["friche"]}, {"date": "6/12", "wd": "五", "note": "之後返回巴黎", "sites": ["camargo"]}, {"date": "6/14", "wd": "日", "note": "期末交流：向 104 藝術中心與法國在臺協會發表", "sites": ["104"]}], "elements": [{"k": "path", "zh": "路徑", "en": "Paths", "d": "人移動的路線，沿途能否讀懂城市。"}, {"k": "edge", "zh": "邊界", "en": "Edges", "d": "河岸、港口、鐵道等邊緣如何被打開。"}, {"k": "district", "zh": "區域", "en": "Districts", "d": "街區是否有可辨識的性格。"}, {"k": "node", "zh": "節點", "en": "Nodes", "d": "車站、廣場如何成為聚集的地方。"}, {"k": "landmark", "zh": "地標", "en": "Landmarks", "d": "新舊地標如何承載城市的記憶。"}], "qs": [{"k": "Q1", "short": "空間與營運", "zh": "舊工業空間再利用時，「空間改造」與「文化營運」如何同時被設計？", "en": "How are spatial transformation and cultural programming designed together in former industrial sites?"}, {"k": "Q2", "short": "交通建設", "zh": "大型交通建設中，建築師與藝術家如何在工程階段協作並預留公共空間？", "en": "How do architects and artists collaborate to reserve public space in major transport projects?"}, {"k": "Q3", "short": "治理機制", "zh": "以文化驅動的都市再生，其治理與營運機制為何？", "en": "What governance and operating models sustain culture-led regeneration?"}], "cityLede": {"paris": "基礎設施與機構的尺度：大型建設與國家級文化機構，如何在規劃階段就為藝術與公共空間預留位置。", "nantes": "整座島嶼的尺度：規劃單位與文化團隊如何協作，以文化重新編寫一座前工業島的意象。", "marseille": "單一園區與社群的尺度：舊工廠如何由多個團隊共同營運，港口邊緣如何成為市民的公共空間。"}};
+var CITY={paris:{zh:"巴黎",en:"Paris",c:"var(--par)"},nantes:{zh:"南特",en:"Nantes",c:"var(--nan)"},marseille:{zh:"馬賽",en:"Marseille",c:"var(--mar)"}};
+var SITES=DATA.sites, SBY={}; SITES.forEach(function(s){SBY[s.id]=s});
+var EL=DATA.elements, QS=DATA.qs;
+var state={notes:[],drafts:{},canWrite:false,db:null,assets:null,sample:null,downloads:null,uid:null,filter:"all",editing:null,photos:[]};
+function use(n){try{return (window.claude&&window.claude.use)?window.claude.use(n):Promise.resolve(null)}catch(e){return Promise.resolve(null)}}
+function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+function $(id){return document.getElementById(id)}
+function siteColor(s){return CITY[s.city].c}
+function elName(k){var e=EL.find(function(x){return x.k===k});return e?e.zh+" "+e.en:k}
+
+/* ---------- static: overview ---------- */
+var ICON={
+ path:'<rect class="fill" x="2" y="2" width="76" height="56" rx="6"/><path d="M6 46 C22 46 24 16 42 16 S60 40 74 14" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/><path class="acc" d="M6 46 C22 46 24 16 42 16 S60 40 74 14" fill="none" stroke-width="1.6" stroke-dasharray="3 4"/><circle class="accf" cx="74" cy="14" r="3.5"/>',
+ edge:'<rect class="fill" x="2" y="2" width="76" height="56" rx="6"/><path d="M44 2 L36 58" stroke="currentColor" stroke-width="5"/><g class="acc" stroke-width="1.6"><path d="M48 8 L60 2M50 20 L70 6M52 32 L78 12M54 44 L78 26M56 56 L78 40"/></g><path d="M10 30 h18" stroke="currentColor" stroke-width="2" stroke-dasharray="3 3"/>',
+ district:'<rect class="fill" x="2" y="2" width="76" height="56" rx="6"/><path class="accf" fill-opacity=".18" d="M12 14 L46 8 L68 22 L62 50 L24 52 L10 34 Z"/><path d="M12 14 L46 8 L68 22 L62 50 L24 52 L10 34 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><g fill="currentColor"><rect x="24" y="20" width="7" height="7"/><rect x="35" y="20" width="7" height="7"/><rect x="46" y="24" width="7" height="7"/><rect x="24" y="31" width="7" height="7"/><rect x="35" y="31" width="7" height="7"/><rect x="46" y="35" width="7" height="7"/><rect x="30" y="42" width="7" height="5"/></g>',
+ node:'<rect class="fill" x="2" y="2" width="76" height="56" rx="6"/><g stroke="currentColor" stroke-width="3.5" stroke-linecap="round"><path d="M40 30 L6 10M40 30 L74 8M40 30 L8 54M40 30 L72 54M40 30 L40 2"/></g><circle cx="40" cy="30" r="10" fill="var(--surface)" stroke="var(--accent)" stroke-width="4"/>',
+ landmark:'<rect class="fill" x="2" y="2" width="76" height="56" rx="6"/><path d="M6 52 h68" stroke="currentColor" stroke-width="2.5"/><g fill="currentColor" opacity=".35"><rect x="10" y="38" width="10" height="14"/><rect x="22" y="42" width="8" height="10"/><rect x="52" y="40" width="9" height="12"/><rect x="63" y="44" width="8" height="8"/></g><path d="M40 6 L46 18 L44 52 L36 52 L34 18 Z" fill="currentColor"/><circle class="accf" cx="40" cy="6" r="3"/>'};
+function icon(k,cls){return '<svg class="'+(cls||"ico")+'" viewBox="0 0 80 60" aria-hidden="true">'+(ICON[k]||"")+'</svg>'}
+$("lynch-cards").innerHTML=EL.map(function(e){return '<div class="card">'+icon(e.k)+'<b>'+esc(e.zh)+'</b><span class="en">'+esc(e.en)+'</span><p style="font-size:.85rem;margin:.3rem 0 0">'+esc(e.d)+'</p></div>'}).join("");
+$("q-list").innerHTML=QS.map(function(q){return '<div class="q"><div class="qtag">'+q.k+'</div><div><b>'+esc(q.zh)+'</b><div class="en">'+esc(q.en)+'</div></div></div>'}).join("");
+
+/* ---------- routing ---------- */
+var VIEWS=["overview","route","record","handbook"];
+function show(){var v=(location.hash||"").slice(1); if(VIEWS.indexOf(v)<0)v="overview";
+  VIEWS.forEach(function(x){$("v-"+x).hidden=(x!==v)});
+  document.querySelectorAll("nav.tabs a").forEach(function(a){if(a.dataset.v===v)a.setAttribute("aria-current","page");else a.removeAttribute("aria-current")});
+  if(v==="handbook")renderHandbook(); if(v==="route")renderRoute(); if(v==="record")renderRecent();}
+window.addEventListener("hashchange",function(){show();window.scrollTo(0,0)});
+
+/* ---------- route ---------- */
+function notesFor(id){return state.notes.filter(function(n){return n.site===id})}
+var CTX={
+ paris:{rivers:[[[48.836,2.225],[48.845,2.255],[48.858,2.278],[48.862,2.293],[48.863,2.308],[48.861,2.325],[48.858,2.340],[48.854,2.352],[48.849,2.362],[48.845,2.371],[48.838,2.383],[48.829,2.398],[48.820,2.414]]],ring:[48.857,2.345,0.090,0.040],w:7,label:[[48.853,2.240,"塞納河"],[48.905,2.330,"Saint-Denis"]]},
+ nantes:{rivers:[[[47.2125,-1.600],[47.2110,-1.580],[47.2095,-1.560],[47.2085,-1.540],[47.2080,-1.520]],[[47.2030,-1.600],[47.2000,-1.575],[47.1975,-1.550],[47.1980,-1.525],[47.2050,-1.512],[47.2080,-1.508]]],w:9,extent:[[47.1975,-1.575]],label:[[47.2005,-1.560,"Île de Nantes（南特島）"],[47.2128,-1.552,"羅亞爾河"]]},
+ marseille:{sea:[[43.370,5.280],[43.360,5.305],[43.345,5.325],[43.330,5.338],[43.312,5.355],[43.300,5.360],[43.2955,5.3640],[43.2945,5.3740],[43.2915,5.3640],[43.285,5.355],[43.270,5.365],[43.250,5.375],[43.225,5.410],[43.212,5.450],[43.205,5.500],[43.210,5.540],[43.200,5.560],[43.170,5.560],[43.170,5.280]],w:0,label:[[43.245,5.320,"地中海"],[43.222,5.525,"Cassis"]]}};
+var mapCity="paris", selSite=null;
+function cityNums(c){var n=0,o={};DATA.days.forEach(function(d){d.sites.forEach(function(id){var s=SBY[id];if(s.city===c&&s.ll&&o[id]==null)o[id]=++n})});return o}
+function renderMap(){
+  $("maptabs").innerHTML=["paris","nantes","marseille"].map(function(c){return '<button type="button" data-mc="'+c+'" aria-pressed="'+(mapCity===c)+'">'+CITY[c].zh+'</button>'}).join("");
+  var c=mapCity, cx=CTX[c], pts=SITES.filter(function(s){return s.city===c&&s.ll}), nums=cityNums(c);
+  var ext=pts.map(function(s){return s.ll}).concat(cx.extent||[]);
+  var lats=ext.map(function(p){return p[0]}), lons=ext.map(function(p){return p[1]});
+  var la0=Math.min.apply(null,lats),la1=Math.max.apply(null,lats),lo0=Math.min.apply(null,lons),lo1=Math.max.apply(null,lons);
+  var k=Math.cos((la0+la1)/2*Math.PI/180), W=400,H=300,m=36;
+  var sx=(W-2*m)/Math.max((lo1-lo0)*k,1e-4), sy=(H-2*m)/Math.max(la1-la0,1e-4), sc=Math.min(sx,sy);
+  var ox=W/2-((lo0+lo1)/2)*k*sc, oy=H/2+((la0+la1)/2)*sc;
+  function P(la,lo){return [ (lo*k*sc+ox).toFixed(1), (oy-la*sc).toFixed(1) ]}
+  var g='';
+  if(cx.sea)g+='<path class="sea" d="M'+cx.sea.map(function(p){return P(p[0],p[1]).join(",")}).join(" L")+' Z"/>';
+  (cx.rivers||[]).forEach(function(r){g+='<path class="river" stroke-width="'+cx.w+'" d="M'+r.map(function(p){return P(p[0],p[1]).join(",")}).join(" L")+'"/>'});
+  if(cx.ring){var q=P(cx.ring[0],cx.ring[1]);g+='<ellipse class="ring" cx="'+q[0]+'" cy="'+q[1]+'" rx="'+(cx.ring[2]*k*sc).toFixed(1)+'" ry="'+(cx.ring[3]*sc).toFixed(1)+'"/>';g+='<text class="lab" x="'+(+q[0]+cx.ring[2]*k*sc*0.55).toFixed(1)+'" y="'+(+q[1]+cx.ring[3]*sc+12).toFixed(1)+'">環城大道（示意）</text>';}
+  (cx.label||[]).forEach(function(l){var q=P(l[0],l[1]);g+='<text class="lab" x="'+q[0]+'" y="'+q[1]+'">'+esc(l[2])+'</text>'});
+  // scale bar 1 km or 5 km
+  var kmPx=sc/111.32, raw=80/kmPx, km=[0.2,0.5,1,2,5,10].reduce(function(a,v){return Math.abs(v-raw)<Math.abs(a-raw)?v:a},1);
+  var bar=km*kmPx; g+='<g transform="translate(12,'+(H-14)+')"><path d="M0 0 h'+bar.toFixed(1)+'" stroke="var(--ink)" stroke-width="2"/><path d="M0 -4 v8 M'+bar.toFixed(1)+' -4 v8" stroke="var(--ink)" stroke-width="1.5"/><text class="lab" x="'+(bar+6).toFixed(1)+'" y="4">'+km+' km</text></g>';
+  g+='<g transform="translate('+(W-20)+',22)"><path d="M0 -12 L5 4 L0 0 L-5 4 Z" fill="var(--ink)"/><text class="lab" x="-4" y="16">N</text></g>';
+  var col=CITY[c].c, selG='';
+  pts.forEach(function(s){var q=P(s.ll[0],s.ll[1]), sel=selSite===s.id;
+    var item='<g class="pt'+(sel?' sel':'')+'" data-site="'+s.id+'" style="--c:'+col+'" tabindex="0" role="button" aria-label="'+esc(s.zh)+'"><circle class="glow" cx="'+q[0]+'" cy="'+q[1]+'" r="14"/><circle class="core" cx="'+q[0]+'" cy="'+q[1]+'" r="'+(sel?10:8)+'" fill="'+col+'"/><text class="num" x="'+q[0]+'" y="'+q[1]+'">'+nums[s.id]+'</text>'+
+      (sel?'<text class="sellab" x="'+(+q[0]+(+q[0]>W-120?-14:14))+'" y="'+(+q[1]-12)+'" text-anchor="'+(+q[0]>W-120?"end":"start")+'">'+esc(s.zh)+'</text>':'')+'</g>';
+    if(sel)selG=item; else g+=item;});
+  $("citymap").innerHTML=g+selG; $("citymap").setAttribute("aria-label",CITY[c].zh+"站點地圖（示意）");
+  var info='<span class="en">'+CITY[c].zh+' · 位置為示意，點選站點或地圖上的點</span>';
+  if(selSite){var s=SBY[selSite]; info='<span><b>'+esc(s.zh)+'</b> <span class="en">'+esc(s.dates.join("、"))+(s.area?' · '+esc(s.area):'')+(s.ll?'':' · 地圖上無固定位置')+'</span></span><button class="btn" type="button" data-open="'+s.id+'" style="font-size:.8rem;padding:.3rem .7rem">查看詳情</button>'}
+  $("mapinfo").innerHTML=info;
+}
+function selectSite(id){selSite=id;var s=SBY[id];if(s)mapCity=s.city;renderMap();
+  document.querySelectorAll("#days .sitebtn").forEach(function(b){if(b.dataset.site===id)b.setAttribute("aria-current","true");else b.removeAttribute("aria-current")});}
+$("maptabs").addEventListener("click",function(e){var b=e.target.closest("[data-mc]");if(!b)return;mapCity=b.dataset.mc;if(selSite&&SBY[selSite].city!==mapCity)selSite=null;renderMap();selectSite(selSite)});
+$("citymap").addEventListener("click",function(e){var g=e.target.closest("[data-site]");if(!g)return;selectSite(g.dataset.site);var b=document.querySelector('#days [data-site="'+g.dataset.site+'"]');if(b)b.scrollIntoView({block:"nearest"})});
+$("citymap").addEventListener("keydown",function(e){if(e.key!=="Enter"&&e.key!==" ")return;var g=e.target.closest("[data-site]");if(g){e.preventDefault();selectSite(g.dataset.site)}});
+$("mapinfo").addEventListener("click",function(e){var b=e.target.closest("[data-open]");if(b)openSite(b.dataset.open)});
+function setHdr(){var h=document.querySelector("header.top");if(h)document.documentElement.style.setProperty("--hdr",h.offsetHeight+"px")}
+window.addEventListener("resize",setHdr); setHdr();
+function renderRoute(){
+  var cf=$("city-filter");
+  cf.innerHTML=[["all","全部 All"],["paris","巴黎"],["nantes","南特"],["marseille","馬賽"]].map(function(x){return '<button class="chip" type="button" data-f="'+x[0]+'" aria-pressed="'+(state.filter===x[0])+'">'+x[1]+'</button>'}).join("");
+  var html="";
+  DATA.days.forEach(function(d){
+    var ss=d.sites.map(function(id){return SBY[id]}).filter(function(s){return state.filter==="all"||s.city===state.filter});
+    if(!ss.length)return;
+    html+='<div class="day"><div class="d">'+esc(d.date)+'<small>'+esc(d.wd)+'</small></div><div>'+(d.note?'<div class="en" style="font-size:.82rem">'+esc(d.note)+'</div>':'')+
+      ss.map(function(s){var n=notesFor(s.id).length, no=cityNums(s.city)[s.id];return '<button class="sitebtn" type="button" data-site="'+s.id+'"'+(selSite===s.id?' aria-current="true"':'')+' style="--c:'+siteColor(s)+'"><span>'+(no?'<span class="no">'+no+'</span>':'<span class="dot" style="--c:'+siteColor(s)+'"></span>')+esc(s.zh)+' <span class="en">'+esc(s.en)+'</span></span><span class="cnt">'+(n?n+" 筆記錄":"")+'</span></button>'}).join("")+'</div></div>';
+  });
+  $("days").innerHTML=html; renderMap();
+}
+$("city-filter").addEventListener("click",function(e){var b=e.target.closest("[data-f]");if(!b)return;state.filter=b.dataset.f;if(state.filter!=="all"){mapCity=state.filter;if(selSite&&SBY[selSite].city!==mapCity)selSite=null}renderRoute()});
+$("days").addEventListener("click",function(e){var b=e.target.closest("[data-site]");if(b)selectSite(b.dataset.site)});
+function openSite(id){
+  var s=SBY[id], ns=notesFor(id);
+  var h='<button class="btn close" type="button" data-close>關閉</button>';
+  h+='<p class="eyebrow">'+esc(CITY[s.city].zh)+' · '+esc(s.dates.join("、"))+' · '+esc(s.group)+'</p><h2 style="margin-top:.2rem">'+esc(s.zh)+'<br><span class="en">'+esc(s.en)+'</span></h2>';
+  h+='<div class="chips">'+s.q.map(function(q){return '<span class="tag">'+q+'</span>'}).join("")+s.el.map(function(k){return '<span class="tag">'+esc(elName(k))+'</span>'}).join("")+'</div>';
+  h+='<label class="f">我帶去的問題</label><p>'+esc(s.ask)+'</p>';
+  if(s.org)h+='<div class="org"><b>使命與運作方式</b><br>'+esc(s.org)+'<br><span class="en">我想學的：'+esc(s.learn)+'</span></div>';
+  h+='<label class="f">現場記錄（'+ns.length+'）</label>'+(ns.length?ns.map(noteHTML).join(""):'<p class="empty">尚無記錄。</p>');
+  if(state.canWrite)h+='<div class="row" style="margin-top:.8rem"><button class="btn primary" type="button" data-add="'+id+'">在此站新增記錄</button></div>';
+  $("site-body").innerHTML=h; var d=$("site-dlg"); if(d.showModal)d.showModal(); else d.setAttribute("open","");
+}
+$("site-dlg").addEventListener("click",function(e){
+  if(e.target.closest("[data-close]")||e.target===$("site-dlg")){$("site-dlg").close();return}
+  var a=e.target.closest("[data-add]"); if(a){$("site-dlg").close();startNew(a.dataset.add);location.hash="record"}
+});
+
+/* ---------- notes rendering ---------- */
+function fmtTime(iso){try{var d=new Date(iso);return (d.getMonth()+1)+"/"+d.getDate()+" "+String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0")}catch(e){return""}}
+function noteHTML(n,withActions){
+  var s=SBY[n.site]||{zh:n.site,city:"paris"};
+  var ph=(n.photos||[]).filter(function(p){return typeof p.url==="string"&&(p.url.indexOf("https://")===0||p.url.indexOf("/_blob/")===0||/^photos\/[A-Za-z0-9._-]+$/.test(p.url))});
+  var h='<div class="note" style="--c:'+siteColor(s)+'"><div class="meta"><b>'+esc(s.zh)+'</b><span>'+esc(fmtTime(n.createdAt))+'</span>'+
+    (n.el||[]).map(function(k){return '<span class="tag">'+esc(elName(k))+'</span>'}).join("")+(n.q||[]).map(function(q){return '<span class="tag">'+esc(q)+'</span>'}).join("")+'</div>';
+  if(n.text)h+='<div class="txt">'+esc(n.text)+'</div>';
+  if(ph.length)h+='<div class="photos">'+ph.map(function(p){var cp=p.el?elName(p.el):(p.cap||"");return '<figure><img src="'+esc(p.url)+'" alt="'+esc(cp||s.zh)+'" loading="lazy"><figcaption>'+esc(cp)+'</figcaption></figure>'}).join("")+'</div>';
+  if(withActions&&state.canWrite)h+='<div class="row" style="margin-top:.4rem"><button class="btn" type="button" data-edit="'+esc(n.id)+'">編輯</button><button class="btn" type="button" data-del="'+esc(n.id)+'">刪除</button><span class="status" data-delst="'+esc(n.id)+'"></span></div>';
+  return h+'</div>';
+}
+function renderRecent(){
+  var ns=state.notes.slice().sort(function(a,b){return (b.createdAt||"").localeCompare(a.createdAt||"")}).slice(0,30);
+  $("recent").innerHTML=ns.length?ns.map(function(n){return noteHTML(n,true)}).join(""):'<p class="empty">尚無記錄。見習期間（116/5/30–6/16）在每一站新增。</p>';
+}
+var pendingDel=null;
+$("recent").addEventListener("click",function(e){
+  var ed=e.target.closest("[data-edit]"); if(ed){loadEdit(ed.dataset.edit);return}
+  var dl=e.target.closest("[data-del]"); if(!dl)return; var id=dl.dataset.del, st=document.querySelector('[data-delst="'+CSS.escape(id)+'"]');
+  if(pendingDel!==id){pendingDel=id; dl.textContent="確定刪除？"; if(st)st.textContent="再按一次刪除"; return}
+  pendingDel=null; dl.disabled=true;
+  state.db.collection("notes").doc(id).delete().then(function(){},function(err){dl.disabled=false; if(st){st.textContent="刪除失敗："+(err&&err.code||"");st.className="status err"}});
+});
+
+/* ---------- form ---------- */
+function fillSiteSelect(){
+  var html="";
+  ["paris","nantes","marseille"].forEach(function(c){
+    html+='<optgroup label="'+CITY[c].zh+' '+CITY[c].en+'">'+SITES.filter(function(s){return s.city===c}).map(function(s){return '<option value="'+s.id+'">'+esc(s.dates[0]+" · "+s.zh)+'</option>'}).join("")+'</optgroup>';
+  });
+  $("f-site").innerHTML=html;
+}
+fillSiteSelect();
+$("f-el").innerHTML=EL.map(function(e){return '<div class="elrow"><div class="eh"><span class="lead">'+icon(e.k,"ico ico-s")+'<button type="button" class="chip" data-k="'+e.k+'" aria-pressed="false">'+esc(e.zh)+' '+esc(e.en)+'</button></span>'+
+  '<input type="file" accept="image/*" multiple id="ph-'+e.k+'" data-elph="'+e.k+'" hidden><label for="ph-'+e.k+'" class="btn phbtn" data-phl="'+e.k+'">＋ 拍照／上傳</label></div>'+
+  '<div class="photos" id="php-'+e.k+'"></div></div>'}).join("");
+$("f-q").innerHTML=QS.map(function(q){return '<button type="button" class="chip" data-k="'+q.k+'" aria-pressed="false" title="'+esc(q.zh)+'">'+q.k+' '+esc(q.short)+'</button>'}).join("");
+["f-el","f-q"].forEach(function(id){$(id).addEventListener("click",function(e){var b=e.target.closest("button.chip[data-k]");if(!b)return;b.setAttribute("aria-pressed",b.getAttribute("aria-pressed")==="true"?"false":"true")})});
+$("f-site").addEventListener("change",function(){presetTags($("f-site").value)});
+function setChips(id,vals){$(id).querySelectorAll("button.chip[data-k]").forEach(function(b){b.setAttribute("aria-pressed",vals.indexOf(b.dataset.k)>=0?"true":"false")})}
+function getChips(id){return Array.prototype.map.call($(id).querySelectorAll('button.chip[aria-pressed="true"]'),function(b){return b.dataset.k})}
+function presetTags(site){if(state.editing)return;var s=SBY[site];if(!s)return;setChips("f-q",s.q);setChips("f-el",[])}
+function startNew(site){state.editing=null;$("f-site").value=site||SITES[0].id;$("f-text").value="";state.photos=[];renderFormPhotos();presetTags($("f-site").value);$("save").textContent="儲存記錄";$("save-status").textContent=""}
+function loadEdit(id){var n=state.notes.find(function(x){return x.id===id});if(!n)return;state.editing=id;$("f-site").value=n.site;setChips("f-el",n.el||[]);setChips("f-q",n.q||[]);$("f-text").value=n.text||"";state.photos=(n.photos||[]).map(function(p){return {id:p.id,url:p.url,el:p.el||""}});renderFormPhotos();$("save").textContent="更新記錄";$("rec-form").scrollIntoView({block:"start"})}
+$("reset").addEventListener("click",function(){startNew($("f-site").value)});
+function renderFormPhotos(){
+  EL.forEach(function(e){$("php-"+e.k).innerHTML=state.photos.map(function(p,i){if(p.el!==e.k)return "";return '<figure>'+(p.url?'<img src="'+esc(p.url)+'" alt="'+esc(e.zh)+'">':'<img alt="上傳中">')+'<button type="button" class="btn" style="font-size:.75rem;padding:.2rem .5rem;margin-top:.2rem" data-rm="'+i+'">移除</button></figure>'}).join("")});
+  var other=state.photos.map(function(p,i){return EL.some(function(e){return e.k===p.el})?"":'<figure><img src="'+esc(p.url||"")+'" alt=""><button type="button" class="btn" style="font-size:.75rem;padding:.2rem .5rem;margin-top:.2rem" data-rm="'+i+'">移除</button></figure>'}).join("");
+  if(other)$("php-"+EL[0].k).insertAdjacentHTML("beforeend",other);
+}
+$("f-el").addEventListener("click",function(e){var r=e.target.closest("[data-rm]");if(!r)return;state.photos.splice(+r.dataset.rm,1);renderFormPhotos()});
+$("f-el").addEventListener("click",function(e){var l=e.target.closest("[data-phl]");if(l&&!state.assets){e.preventDefault();$("save-status").textContent="此檢視無法上傳照片。";$("save-status").className="status err"}});
+function shrink(file){return new Promise(function(res){
+  var url=URL.createObjectURL(file), img=new Image();
+  img.onload=function(){var m=1600,w=img.naturalWidth,h=img.naturalHeight,k=Math.min(1,m/Math.max(w,h));
+    var c=document.createElement("canvas");c.width=Math.round(w*k);c.height=Math.round(h*k);c.getContext("2d").drawImage(img,0,0,c.width,c.height);
+    URL.revokeObjectURL(url); c.toBlob(function(b){res(b||file)},"image/jpeg",0.82)};
+  img.onerror=function(){URL.revokeObjectURL(url);res(file)}; img.src=url;})}
+$("f-el").addEventListener("change",async function(e){
+  var elk=e.target.dataset.elph; if(!elk)return;
+  var files=Array.prototype.slice.call(e.target.files||[]); e.target.value="";
+  if(!state.assets){$("save-status").textContent="此檢視無法上傳照片。";$("save-status").className="status err";return}
+  for(var i=0;i<files.length;i++){
+    var slot={id:null,url:null,el:elk}; state.photos.push(slot); renderFormPhotos();
+    var chip=$("f-el").querySelector('button.chip[data-k="'+elk+'"]'); if(chip)chip.setAttribute("aria-pressed","true");
+    $("save-status").textContent="上傳照片中…"; $("save-status").className="status";
+    try{var b=await shrink(files[i]); var r=await state.assets.upload(b,{type:"image/jpeg"}); slot.id=r.id; slot.url=r.url; $("save-status").textContent="照片已上傳"; $("save-status").className="status ok"}
+    catch(err){state.photos.splice(state.photos.indexOf(slot),1); $("save-status").textContent="照片上傳失敗："+(err&&err.code||"")+"，請稍後再試。"; $("save-status").className="status err"}
+    renderFormPhotos();
+  }
+});
+$("rec-form").addEventListener("submit",async function(e){
+  e.preventDefault(); if(!state.db||!state.canWrite)return;
+  if(state.photos.some(function(p){return !p.url})){$("save-status").textContent="照片仍在上傳，請稍候。";return}
+  var body={site:$("f-site").value,el:getChips("f-el"),q:getChips("f-q"),text:$("f-text").value.trim(),
+    photos:state.photos.map(function(p){return {id:p.id,url:p.url,el:p.el||""}})};
+  if(!body.text&&!body.photos.length){$("save-status").textContent="請至少寫一段筆記或加一張照片。";$("save-status").className="status err";return}
+  $("save").disabled=true; $("save-status").textContent="儲存中…"; $("save-status").className="status";
+  try{
+    if(state.editing){var old=state.notes.find(function(x){return x.id===state.editing});body.createdAt=old&&old.createdAt||new Date().toISOString();body.updatedAt=new Date().toISOString();await state.db.collection("notes").doc(state.editing).set(body)}
+    else{body.createdAt=new Date().toISOString();await state.db.collection("notes").add(body)}
+    $("save-status").textContent="已儲存"; $("save-status").className="status ok"; var keep=body.site; startNew(keep); $("save-status").textContent="已儲存"; $("save-status").className="status ok";
+  }catch(err){$("save-status").textContent=(err&&err.code==="quota_exceeded")?"資料庫已滿，請刪除部分記錄後再存。":"儲存失敗，請再試一次。"; $("save-status").className="status err"}
+  $("save").disabled=false;
+});
+
+/* ---------- handbook ---------- */
+function renderHandbook(){
+  var ns=state.notes, ph=ns.reduce(function(a,n){return a+(n.photos||[]).length},0);
+  var covered={}; ns.forEach(function(n){covered[n.site]=1});
+  $("stats").innerHTML='<div><b>'+ns.length+'</b>記錄 notes</div><div><b>'+ph+'</b>照片 photos</div><div><b>'+Object.keys(covered).length+' / '+SITES.length+'</b>站點 sites</div><div><b>'+Object.keys(state.drafts).length+'</b>手冊段落 drafts</div>';
+  // matrix
+  var cnt={}, max=0;
+  ["paris","nantes","marseille"].forEach(function(c){cnt[c]={};EL.forEach(function(e){cnt[c][e.k]=0})});
+  ns.forEach(function(n){var s=SBY[n.site];if(!s)return;(n.el||[]).forEach(function(k){if(cnt[s.city][k]!=null){cnt[s.city][k]++;max=Math.max(max,cnt[s.city][k])}})});
+  var t='<table><thead><tr><th>城市</th>'+EL.map(function(e){return '<th>'+esc(e.zh)+'<br><span class="en">'+esc(e.en)+'</span></th>'}).join("")+'</tr></thead><tbody>';
+  ["paris","nantes","marseille"].forEach(function(c){t+='<tr><td><span class="dot" style="--c:'+CITY[c].c+'"></span>'+CITY[c].zh+'</td>'+EL.map(function(e){var v=cnt[c][e.k];return '<td class="v" style="--c:'+CITY[c].c+';--a:'+(max?Math.round(v/max*55):0)+'">'+v+'</td>'}).join("")+'</tr>'});
+  $("matrix").innerHTML=t+'</tbody></table>';
+  var h="";
+  ["paris","nantes","marseille"].forEach(function(c){
+    h+='<h2><span class="dot" style="--c:'+CITY[c].c+'"></span>'+CITY[c].zh+' <span class="en">'+CITY[c].en+'</span></h2><p>'+esc(DATA.cityLede[c])+'</p>';
+    SITES.filter(function(s){return s.city===c}).forEach(function(s){
+      var sn=notesFor(s.id), dr=state.drafts[s.id];
+      h+='<div class="hb-site" style="--c:'+siteColor(s)+'"><h3>'+esc(s.zh)+' <span class="en">'+esc(s.en)+' · '+esc(s.dates.join("、"))+'</span></h3><p class="pre">行前問題：'+esc(s.ask)+'</p>';
+      h+=sn.length?sn.map(function(n){return noteHTML(n,false)}).join(""):'<p class="empty">現場記錄：尚未開始。</p>';
+      if(dr||(state.canWrite&&sn.length)){
+        h+='<div class="draft"><b>手冊段落</b> <span class="en">Handbook text</span>';
+        if(state.canWrite){
+          h+='<label class="f" for="dz-'+s.id+'">中文</label><textarea id="dz-'+s.id+'">'+esc(dr&&dr.zh||"")+'</textarea><label class="f" for="de-'+s.id+'">English</label><textarea id="de-'+s.id+'">'+esc(dr&&dr.en||"")+'</textarea>'+
+             '<div class="row" style="margin-top:.5rem">'+(state.sample&&sn.length?'<button class="btn" type="button" data-gen="'+s.id+'">請 Claude 依筆記起草</button>':'')+'<button class="btn primary" type="button" data-savedr="'+s.id+'">儲存段落</button><span class="status" id="ds-'+s.id+'"></span></div>';
+        }else{h+='<p>'+esc(dr.zh||"")+'</p><p class="en">'+esc(dr.en||"")+'</p>'}
+        h+='</div>';
+      }
+      h+='</div>';
+    });
+  });
+  $("hb").innerHTML=h;
+}
+$("hb").addEventListener("click",async function(e){
+  var g=e.target.closest("[data-gen]"), sv=e.target.closest("[data-savedr]");
+  if(g){var id=g.dataset.gen,s=SBY[id],st=$("ds-"+id); g.disabled=true; st.textContent="Claude 起草中…"; st.className="status";
+    var notes=notesFor(id).map(function(n,i){return "筆記"+(i+1)+"（元素："+(n.el||[]).join("、")+"；問題："+(n.q||[]).join("、")+"）："+(n.text||"")+(n.photos||[]).map(function(p){return p.el?"［照片："+elName(p.el)+"］":""}).join("")}).join("\n");
+    var prompt="你是建築與都市研究的編輯，協助一位臺灣建築設計師撰寫圖解式案例手冊《文化驅動的都市再生：法國三城觀察》。\n"+
+      "站點："+s.zh+"（"+s.en+"），城市："+CITY[s.city].zh+"，尺度："+DATA.cityLede[s.city]+"\n行前問題："+s.ask+"\n"+
+      "研究問題：Q1 舊工業空間的空間改造與文化營運如何同時被設計；Q2 大型交通建設中建築師與藝術家如何協作並預留公共空間；Q3 文化驅動都市再生的治理與營運機制。\n"+
+      "觀察框架：凱文．林區的五種城市意象（路徑、邊界、區域、節點、地標）。\n現場筆記：\n"+notes+"\n\n"+
+      "請只根據現場筆記撰寫，不要加入筆記沒有的事實或數據；若筆記不足以回答行前問題，在段落最後用一句話指出還需要補充什麼。"+
+      "回傳 JSON：{\"zh\":\"繁體中文段落，180 至 260 字，第一人稱，說明觀察、對應的城市意象與研究問題，以及對臺灣的啟示\",\"en\":\"同內容的英文段落，100 至 150 字\"}";
+    try{var out=await state.sample.json(prompt,{modelTier:"default"}); if(out&&typeof out.zh==="string"){$("dz-"+id).value=out.zh;$("de-"+id).value=typeof out.en==="string"?out.en:"";st.textContent="已起草，請修改後按「儲存段落」";st.className="status ok"}else{st.textContent="起草格式不完整，請再試一次";st.className="status err"}}
+    catch(err){st.textContent=err&&err.code==="not_granted"?"未允許使用 Claude":"起草失敗，請稍後再試";st.className="status err"}
+    g.disabled=false; return}
+  if(sv){var id2=sv.dataset.savedr,st2=$("ds-"+id2); sv.disabled=true; st2.textContent="儲存中…"; st2.className="status";
+    try{await state.db.collection("drafts").doc(id2).set({zh:$("dz-"+id2).value,en:$("de-"+id2).value,updatedAt:new Date().toISOString()});st2.textContent="已儲存";st2.className="status ok"}
+    catch(err){st2.textContent="儲存失敗";st2.className="status err"} sv.disabled=false}
+});
+$("export").addEventListener("click",async function(){
+  var md="# 文化驅動的都市再生：法國三城觀察\n## Culture-led Urban Regeneration: Observations from Three French Cities\n\n";
+  ["paris","nantes","marseille"].forEach(function(c){
+    md+="\n## "+CITY[c].zh+" "+CITY[c].en+"\n\n"+DATA.cityLede[c]+"\n";
+    SITES.filter(function(s){return s.city===c}).forEach(function(s){
+      var sn=notesFor(s.id),dr=state.drafts[s.id]; if(!sn.length&&!dr)return;
+      md+="\n### "+s.zh+"（"+s.en+"）\n\n> 行前問題："+s.ask+"\n\n";
+      if(dr){md+=(dr.zh||"")+"\n\n"+(dr.en||"")+"\n\n"}
+      sn.forEach(function(n){md+="- "+(n.text||"").replace(/\n/g," ")+((n.el||[]).length?"（"+n.el.map(elName).join("、")+"）":"")+"\n";(n.photos||[]).forEach(function(p){md+="  - 照片："+(p.el?elName(p.el):(p.cap||""))+"\n"})});
+    });
+  });
+  var st=$("export-status");
+  try{await state.downloads.save({filename:"法國三城觀察-手冊.md",data:md});st.textContent="已匯出";st.className="status ok"}
+  catch(err){st.textContent=err&&err.code==="declined"?"已取消匯出":"匯出失敗";st.className="status err"}
+});
+
+/* ---------- dictation ---------- */
+async function setupMic(){
+  var d=await use("dictation"); if(!d)return; var mic=$("mic"); mic.hidden=false; var base="";
+  d.onPartial(function(e){$("mic-status").textContent=e.text});
+  d.onFinal(function(e){var t=$("f-text");t.value=(t.value?t.value+(/\s$/.test(t.value)?"":" "):"")+e.text;$("mic-status").textContent=""});
+  d.onState(function(e){mic.textContent=e.state==="listening"?"■ 停止":"🎙 語音輸入"});
+  mic.addEventListener("click",function(){ if(d.active()){d.stop().catch(function(){})} else {d.start().catch(function(err){$("mic-status").textContent=err&&err.code==="not_granted"?"未允許語音輸入，請改用打字":"語音輸入無法使用";if(err&&err.code==="not_granted")mic.hidden=true})} });
+}
+
+/* ---------- boot ---------- */
+function bootStatic(){
+  $("rec-banner").textContent="這是公開展示版。見習期間（116/5/30–6/16），我以田野工具在現場記錄，整理後同步到這裡；下方為記錄介面的示範畫面。";
+  $("rec-form").hidden=false; startNew();
+  $("rec-form").querySelectorAll("input,textarea,select,button").forEach(function(x){if(x.id!=="f-site")x.disabled=true});
+  document.querySelectorAll("[data-phl]").forEach(function(l){l.setAttribute("aria-disabled","true")});
+  fetch("data/records.json",{cache:"no-store"}).then(function(r){return r.ok?r.json():null}).then(function(d){
+    if(!d)return; state.notes=Array.isArray(d.notes)?d.notes:[]; state.drafts=d.drafts&&typeof d.drafts==="object"?d.drafts:{};
+    if(d.updatedAt)$("rec-banner").textContent+="（最後同步："+String(d.updatedAt).slice(0,16).replace("T"," ")+"）";
+    var v=(location.hash||"").slice(1); if(v==="record")renderRecent(); if(v==="handbook")renderHandbook(); if(v==="route")renderRoute();
+  }).catch(function(){});
+}
+async function boot(){
+  if(window.__STATIC__){bootStatic();return}
+  var user=await use("user"); var db=await use("db");
+  state.db=db;
+  if(!db){$("rec-banner").textContent="此檢視無法讀取記錄（例如未登入）。觀點與路線仍可瀏覽。";return}
+  try{state.canWrite=!!(user&&await user.canEdit())}catch(e){state.canWrite=false}
+  if(state.canWrite){$("rec-form").hidden=false;$("rec-banner").hidden=true;startNew();
+    use("assets").then(function(a){state.assets=a;if(!a)document.querySelectorAll("[data-phl]").forEach(function(l){l.setAttribute("aria-disabled","true")})});
+    use("sample").then(function(s){state.sample=s;renderHandbook()});
+    use("downloads").then(function(d){state.downloads=d;$("export").hidden=!d});
+    setupMic();
+  }else{$("rec-banner").textContent="記錄由計畫執行者在見習期間新增；你可以在「路線」與「手冊」瀏覽。"}
+  var timer=setTimeout(function(){$("rec-banner").hidden=false;$("rec-banner").textContent="暫時連不上記錄資料，顯示的內容可能不是最新。"},10000);
+  db.collection("notes").onSnapshot(function(snap){
+    if(!snap.metadata.fromCache){clearTimeout(timer); if(state.canWrite)$("rec-banner").hidden=true}
+    state.notes=snap.docs.map(function(d){var o=Object.assign({},d.data());o.id=d.id;return o});
+    var v=(location.hash||"").slice(1); if(v==="record")renderRecent(); if(v==="handbook")renderHandbook(); if(v==="route")renderRoute();
+  },function(err){clearTimeout(timer);$("rec-banner").hidden=false;$("rec-banner").textContent="記錄資料無法載入（"+(err&&err.code||"")+"）。"});
+  db.collection("drafts").onSnapshot(function(snap){
+    var o={}; snap.docs.forEach(function(d){o[d.id]=d.data()}); state.drafts=o;
+    if((location.hash||"").slice(1)==="handbook"&&!document.activeElement.matches("textarea"))renderHandbook();
+  },function(){});
+}
+show(); boot();
+})();
+</script>
+</body></html>
