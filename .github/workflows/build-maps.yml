@@ -2,7 +2,7 @@ name: build-maps
 on:
   push:
     branches: [main]
-    paths: ['tools/build_maps.py']
+    paths: ['tools/build_maps.py', '.github/workflows/build-maps.yml']
   workflow_dispatch:
 permissions:
   contents: write
@@ -12,7 +12,10 @@ jobs:
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
-      - run: pip install shapely==2.0.6
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install 'shapely>=2.0,<2.2' numpy
       - run: python3 tools/build_maps.py
       - name: Commit to map-data branch
         run: |
