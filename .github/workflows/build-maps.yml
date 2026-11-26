@@ -21,7 +21,7 @@ jobs:
         run: |
           mkdir -p /tmp/osm
           for r in ile-de-france pays-de-la-loire provence-alpes-cote-d-azur; do
-            curl -sSfL -o /tmp/osm/$r.osm.pbf https://download.geofabrik.de/europe/france/$r-latest.osm.pbf
+            curl -sSfL --retry 6 --retry-delay 20 --retry-all-errors -o /tmp/osm/$r.osm.pbf https://download.geofabrik.de/europe/france/$r-latest.osm.pbf
           done
           ls -la /tmp/osm
       - run: python3 tools/build_maps.py
