@@ -1,0 +1,432 @@
+{
+ "paris": {
+  "elements": 16305,
+  "bytes": 223478
+ },
+ "nantes": {
+  "elements": 1447,
+  "bytes": 28836
+ },
+ "marseille": {
+  "elements": 8016,
+  "bytes": 141431
+ },
+ "brtf": {
+  "found": {
+   "type": "node",
+   "id": 3540702431,
+   "name": "Bureau de Représentation de Taipei",
+   "ll": [
+    48.859149,
+    2.324704
+   ],
+   "tags": {
+    "@type": "node",
+    "@id": 3540702431,
+    "addr:city": "Paris",
+    "addr:full": "78 Rue de l'Université, 75007 Paris, France",
+    "addr:housenumber": "78",
+    "addr:postcode": "75007",
+    "addr:street": "Rue de l'Université",
+    "country": "TW",
+    "diplomatic": "liaison",
+    "email": "brtf@mofa.gov.tw",
+    "facebook": "https://www.facebook.com/brtf.taiwan/",
+    "fax": "+33 1 44 39 88 12"
+   }
+  },
+  "ll": [
+   48.859149,
+   2.324704
+  ],
+  "buildings": 1083,
+  "highlight": 1,
+  "elements": 4513,
+  "bytes": 44346
+ },
+ "104": {
+  "found": {
+   "type": "node",
+   "id": 4416976989,
+   "name": "Le Centquatre - 104",
+   "ll": [
+    48.890049,
+    2.370681
+   ],
+   "tags": {
+    "@type": "node",
+    "@id": 4416976989,
+    "addr:housenumber": "5",
+    "addr:postcode": "75019",
+    "addr:street": "Rue Curial",
+    "amenity": "community_centre",
+    "check_date": "2026-05-19",
+    "check_date:opening_hours": "2023-04-15",
+    "contact:mastodon": "104paris@reseauculture.fr",
+    "name": "Le Centquatre - 104",
+    "name:fr": "Le Centquatre - 104",
+    "opening_hours": "Tu-Fr 12:00-19:00; Sa-Su 11:00-19:00"
+   }
+  },
+  "ll": [
+   48.890049,
+   2.370681
+  ],
+  "buildings": 997,
+  "highlight": 1,
+  "elements": 3915,
+  "bytes": 31820
+ },
+ "tokyo": {
+  "found": {
+   "type": "way",
+   "id": 79219351,
+   "name": "Palais de Tokyo",
+   "ll": [
+    48.86399,
+    2.296522
+   ],
+   "tags": {
+    "@type": "way",
+    "@id": 79219351,
+    "architect": "André Aubert;Marcel Dastugue",
+    "building": "yes",
+    "building:material": "marble",
+    "check_date": "2026-05-19",
+    "contact:email": "accueil@palaisdetokyo.com",
+    "contact:facebook": "palaisdetokyo",
+    "contact:instagram": "palaisdetokyo",
+    "contact:mastodon": "palaisdetokyo@reseauculture.fr",
+    "contact:phone": "+33 1 81 97 35 88",
+    "fee": "yes"
+   }
+  },
+  "ll": [
+   48.86399,
+   2.296522
+  ],
+  "buildings": 1150,
+  "highlight": 1,
+  "elements": 5084,
+  "bytes": 40922
+ },
+ "gpe": {
+  "found": {
+   "type": "node",
+   "id": 6269212320,
+   "name": "Saint-Denis Pleyel",
+   "ll": [
+    48.9177,
+    2.344139
+   ],
+   "tags": {
+    "@type": "node",
+    "@id": 6269212320,
+    "STIF:zone": "2",
+    "bench": "yes",
+    "bin": "no",
+    "bus": "yes",
+    "highway": "bus_stop",
+    "lit": "yes",
+    "name": "Saint-Denis Pleyel",
+    "public_transport": "platform",
+    "ref:FR:STIF": "26985",
+    "shelter": "yes"
+   }
+  },
+  "ll": [
+   48.9177,
+   2.344139
+  ],
+  "buildings": 1154,
+  "highlight": 1,
+  "elements": 3705,
+  "bytes": 26819
+ },
+ "cartoucherie": {
+  "found": {
+   "type": "node",
+   "id": 1886838420,
+   "name": "Théâtre du Soleil",
+   "ll": [
+    48.836353,
+    2.449963
+   ],
+   "tags": {
+    "@type": "node",
+    "@id": 1886838420,
+    "amenity": "theatre",
+    "name": "Théâtre du Soleil",
+    "ref:FR:SIRET": "78434009300029",
+    "website": "http://www.theatre-du-soleil.fr/",
+    "wikidata": "Q910727",
+    "wikipedia": "fr:Théâtre du Soleil"
+   }
+  },
+  "ll": [
+   48.836353,
+   2.449963
+  ],
+  "buildings": 106,
+  "highlight": 1,
+  "elements": 1160,
+  "bytes": 12105
+ },
+ "pompidou": {
+  "found": {
+   "type": "way",
+   "id": 55503397,
+   "name": "Centre Georges Pompidou",
+   "ll": [
+    48.860496,
+    2.352422
+   ],
+   "tags": {
+    "@type": "way",
+    "@id": 55503397,
+    "addr:city": "Paris",
+    "addr:housenumber": "19",
+    "addr:postcode": "75004",
+    "addr:street": "Rue Beaubourg",
+    "alt_name": "Musée Beaubourg",
+    "alt_name:en": "Pompidou Centre",
+    "alt_name:zh": "博堡",
+    "amenity": "arts_centre",
+    "architect": "Renzo Piano;Richard Rogers;Gianfranco Franchini;Vincent Alain",
+    "building": "civic"
+   }
+  },
+  "ll": [
+   48.860496,
+   2.352422
+  ],
+  "buildings": 2319,
+  "highlight": 1,
+  "elements": 9574,
+  "bytes": 72784
+ },
+ "orsay": {
+  "found": {
+   "type": "way",
+   "id": 63178753,
+   "name": "Musée d'Orsay",
+   "ll": [
+    48.859918,
+    2.326585
+   ],
+   "tags": {
+    "@type": "way",
+    "@id": 63178753,
+    "addr:housenumber": "1",
+    "addr:postcode": "75007",
+    "addr:street": "Rue de la Légion d'Honneur",
+    "architect": "Victor Laloux",
+    "architect:wikidata": "Q924704",
+    "architect:wikipedia": "fr:Victor Laloux",
+    "building": "train_station",
+    "building:levels": "5",
+    "building:use": "museum",
+    "check_date": "2026-10-02"
+   }
+  },
+  "ll": [
+   48.859918,
+   2.326585
+  ],
+  "buildings": 1006,
+  "highlight": 1,
+  "elements": 4445,
+  "bytes": 37563
+ },
+ "lu": {
+  "found": {
+   "type": "way",
+   "id": 32428111,
+   "name": "Le Lieu Unique",
+   "ll": [
+    47.215298,
+    -1.545611
+   ],
+   "tags": {
+    "@type": "way",
+    "@id": 32428111,
+    "amenity": "arts_centre",
+    "building": "civic",
+    "check_date": "2026-10-29",
+    "contact:email": "info@lelieuunique.com",
+    "contact:housenumber": "2",
+    "contact:phone": "+33 2 40 12 14 34",
+    "contact:street": "Rue de la Biscuiterie BP 21304",
+    "contact:website": "https://lelieuunique.com",
+    "name": "Le Lieu Unique",
+    "old_name": "Usine Lefèvre Utile"
+   }
+  },
+  "ll": [
+   47.215298,
+   -1.545611
+  ],
+  "buildings": 1521,
+  "highlight": 1,
+  "elements": 6223,
+  "bytes": 47777
+ },
+ "samoa": {
+  "found": null,
+  "ll": [
+   47.2058,
+   -1.557
+  ],
+  "buildings": 796,
+  "highlight": 0,
+  "elements": 3008,
+  "bytes": 25876
+ },
+ "machines": {
+  "found": {
+   "type": "way",
+   "id": 32488638,
+   "name": "Nefs Dubigeon",
+   "ll": [
+    47.205516,
+    -1.564206
+   ],
+   "tags": {
+    "@type": "way",
+    "@id": 32488638,
+    "building": "roof",
+    "building:levels": "1",
+    "height": "25",
+    "max_level": "2",
+    "min_level": "0",
+    "name": "Nefs Dubigeon",
+    "name:br": "Nevioù Dubigeon",
+    "roof:colour": "beige",
+    "roof:shape": "sawtooth",
+    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre;mise à jour : 2009"
+   }
+  },
+  "ll": [
+   47.205516,
+   -1.564206
+  ],
+  "buildings": 527,
+  "highlight": 1,
+  "elements": 2353,
+  "bytes": 17644
+ },
+ "qc": {
+  "found": null,
+  "ll": [
+   47.2045,
+   -1.552
+  ],
+  "buildings": 1043,
+  "highlight": 0,
+  "elements": 3371,
+  "bytes": 37085
+ },
+ "mucem": {
+  "found": {
+   "type": "way",
+   "id": 168685674,
+   "name": "Musée des Civilisations de l'Europe et de la Méditerranée",
+   "ll": [
+    43.296729,
+    5.361025
+   ],
+   "tags": {
+    "@type": "way",
+    "@id": 168685674,
+    "addr:housenumber": "7",
+    "addr:postcode": "13002",
+    "addr:street": "Promenade Robert Laffont",
+    "architect": "Rudy Ricciotti",
+    "building": "yes",
+    "building:material": "mirror",
+    "elevator": "yes",
+    "email": "reservation@mucem.org",
+    "fee": "yes",
+    "height": "19"
+   }
+  },
+  "ll": [
+   43.296729,
+   5.361025
+  ],
+  "buildings": 1119,
+  "highlight": 1,
+  "elements": 3632,
+  "bytes": 21045
+ },
+ "lieux": {
+  "found": null,
+  "ll": [
+   43.335,
+   5.3743
+  ],
+  "buildings": 857,
+  "highlight": 0,
+  "elements": 2162,
+  "bytes": 15845
+ },
+ "friche": {
+  "found": {
+   "type": "way",
+   "id": 68949586,
+   "name": "Friche de la Belle de Mai",
+   "ll": [
+    43.310485,
+    5.390045
+   ],
+   "tags": {
+    "@type": "way",
+    "@id": 68949586,
+    "addr:city": "Marseille",
+    "addr:housenumber": "41",
+    "addr:postcode": "10003",
+    "addr:street": "Rue Jobin",
+    "amenity": "arts_centre",
+    "building": "yes",
+    "name": "Friche de la Belle de Mai",
+    "name:en": "La Friche",
+    "name:oc": "Ermàs de la Bèla de Mai",
+    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010"
+   }
+  },
+  "ll": [
+   43.310485,
+   5.390045
+  ],
+  "buildings": 3692,
+  "highlight": 1,
+  "elements": 8249,
+  "bytes": 52760
+ },
+ "camargo": {
+  "found": {
+   "type": "node",
+   "id": 13630578366,
+   "name": "The Camargo Foundation",
+   "ll": [
+    43.214124,
+    5.532735
+   ],
+   "tags": {
+    "@type": "node",
+    "@id": 13630578366,
+    "name": "The Camargo Foundation",
+    "office": "foundation",
+    "website": "https://camargofoundation.org"
+   }
+  },
+  "ll": [
+   43.214124,
+   5.532735
+  ],
+  "buildings": 1704,
+  "highlight": 1,
+  "elements": 4576,
+  "bytes": 36440
+ }
+}
