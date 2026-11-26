@@ -305,10 +305,10 @@ function elName(k){var e=EL.find(function(x){return x.k===k});return e?e.zh+" "+
 var ICON={
  "path": "<g class=\"o\"><path class=\"dash\" d=\"M18 30 C30 28 34 20 34 14 C34 6 46 3 52 9 C58 16 56 26 46 33 C38 39 28 45 18 52\"/><path d=\"M24 25.5 L18 30 L25 31.5\"/><path d=\"M21.4 44.7 L18 52 L26 51.3\"/></g>",
  "edge": "<g class=\"o\"><path d=\"M28 7 V50 H66\"/><path d=\"M23 13 L28 7 L33 13\"/><path d=\"M60 45 L66 50 L60 55\"/></g>",
- "district": "<rect class=\"s\" x=\"40\" y=\"12\" width=\"20\" height=\"20\"/><g class=\"o\"><path d=\"M20 5 V58 M30 5 V58 M40 5 V58 M50 5 V58 M60 5 V58 M12 12 H68 M12 22 H68 M12 32 H68 M12 42 H68 M12 52 H68\"/></g>",
+ "district": "<rect class=\"s\" x=\"30\" y=\"12\" width=\"30\" height=\"30\"/><g class=\"o\"><path d=\"M20 5 V58 M30 5 V58 M40 5 V58 M50 5 V58 M60 5 V58 M12 12 H68 M12 22 H68 M12 32 H68 M12 42 H68 M12 52 H68\"/></g>",
  "node": "<g class=\"o\"><path d=\"M24 8 V56 M34 8 V56 M44 8 V56 M54 8 V56 M15 17 H63 M15 27 H63 M15 37 H63 M15 47 H63\"/><path d=\"M34 47 L64 6\"/></g><circle class=\"s\" cx=\"34\" cy=\"47\" r=\"4.5\"/>",
  "landmark": "<g class=\"o\"><path d=\"M16 3 V59 M28 3 V59 M40 3 V59 M52 3 V59 M64 3 V59 M8 8 H72 M8 20 H72 M8 32 H72 M8 44 H72 M8 56 H72\"/></g><circle cx=\"46\" cy=\"38\" r=\"7\" class=\"ring\"/><circle class=\"s\" cx=\"46\" cy=\"38\" r=\"4.3\"/>"};
-function icon(k,cls){return '<svg class="'+(cls||"ico")+'" style="color:var(--el-'+k+',var(--lynch))" viewBox="0 0 80 60" aria-hidden="true">'+(ICON[k]||"")+'</svg>'}
+function icon(k,cls){return '<svg class="'+(cls||"ico")+'" viewBox="0 0 80 60" aria-hidden="true">'+(ICON[k]||"")+'</svg>'}
 $("lynch-cards").innerHTML=EL.map(function(e){return '<div class="card">'+icon(e.k)+'<b>'+esc(e.zh)+'</b><span class="en">'+esc(e.en)+'</span><p style="font-size:.85rem;margin:.3rem 0 0">'+esc(e.d)+'</p></div>'}).join("");
 $("q-list").innerHTML=QS.map(function(q){return '<div class="q"><div class="qtag">'+q.k+'</div><div><b>'+esc(q.zh)+'</b><div class="en">'+esc(q.en)+'</div></div></div>'}).join("");
 
