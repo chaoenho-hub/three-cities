@@ -214,7 +214,8 @@ def find_site(sid, city, ll, rx, mode):
     else:
         feats = osm_features(city, lat - d, lon - d * 1.5, lat + d, lon + d * 1.5, ['nwr/name'], sid + '_n', points=True)
         R = re.compile(rx, re.I)
-        feats = [(t, g) for t, g in feats if R.search(t.get('name', '') or '')]
+        X = re.compile(r'parking|arr[êe]t|bus|station v[ée]lib|entr[ée]e', re.I)
+        feats = [(t, g) for t, g in feats if R.search(t.get('name', '') or '') and not X.search(t.get('name', '') or '')]
     best = None
     for t, g in feats:
         area = isinstance(g, (Polygon, MultiPolygon))
@@ -308,6 +309,7 @@ for sid, (ll, city, rx, mode) in SITES.items():
     # highlight: buildings inside the found area, or the building containing / nearest the point
     hl, rest = [], []
     target = found['geom'] if found else None
+    nohl = sid in ('samoa', 'qc', 'lieux')
     pt = Point(lon, lat)
     area_t = target if target is not None and isinstance(target, (Polygon, MultiPolygon)) else None
     for t, g in bld:
@@ -318,7 +320,9 @@ for sid, (ll, city, rx, mode) in SITES.items():
         elif g.buffer(0).contains(pt):
             inside = True
         (hl if inside else rest).append(g)
-    if not hl and area_t is None:
+    if nohl:
+        rest += hl; hl = []; area_t = None
+    if not hl and area_t is None and not nohl:
         near = sorted(rest, key=lambda g: g.distance(pt))
         if near and near[0].distance(pt) < 0.0004:
             hl.append(near[0]); rest.remove(near[0])
