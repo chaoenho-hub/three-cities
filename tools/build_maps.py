@@ -38,7 +38,7 @@ SITES = {
  '104': ((48.8899, 2.3714), 'paris', 'Centquatre|CENTQUATRE|104', None),
  'tokyo': ((48.8641, 2.2966), 'paris', 'Palais de Tokyo', None),
  'gpe': ((48.9183, 2.3437), 'paris', 'Saint-Denis Pleyel', None),
- 'cartoucherie': ((48.8339, 2.4475), 'paris', 'Cartoucherie', None),
+ 'cartoucherie': ((48.8339, 2.4475), 'paris', 'Th[ée][âa]tre du Soleil', None),
  'pompidou': ((48.8606, 2.3522), 'paris', 'Centre Pompidou|Centre Georges Pompidou|Centre national d.art et de culture', None),
  'orsay': ((48.8600, 2.3266), 'paris', "Musée d.Orsay", None),
  'lu': ((47.2153, -1.5455), 'nantes', 'Lieu Unique|lieu unique', None),
