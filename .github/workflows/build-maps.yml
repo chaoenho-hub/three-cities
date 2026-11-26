@@ -1,0 +1,28 @@
+name: build-maps
+on:
+  push:
+    branches: [main]
+    paths: ['tools/build_maps.py']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  maps:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install shapely==2.0.6
+      - run: python3 tools/build_maps.py
+      - name: Commit to map-data branch
+        run: |
+          mkdir /tmp/out && cp -r maps /tmp/out/
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git checkout --orphan map-data
+          git rm -rf --quiet .
+          rm -rf tools .github maps photos data
+          cp -r /tmp/out/maps .
+          git add maps
+          git commit -m "map data from OpenStreetMap"
+          git push -f origin map-data
