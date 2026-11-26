@@ -16,6 +16,14 @@ jobs:
         with:
           python-version: '3.12'
       - run: pip install 'shapely>=2.0,<2.2' numpy
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq osmium-tool
+      - name: Download OpenStreetMap extracts (Geofabrik)
+        run: |
+          mkdir -p /tmp/osm
+          for r in ile-de-france pays-de-la-loire provence-alpes-cote-d-azur; do
+            curl -sSfL -o /tmp/osm/$r.osm.pbf https://download.geofabrik.de/europe/france/$r-latest.osm.pbf
+          done
+          ls -la /tmp/osm
       - run: python3 tools/build_maps.py
       - name: Commit to map-data branch
         run: |

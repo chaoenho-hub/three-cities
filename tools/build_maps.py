@@ -4,21 +4,34 @@ import json, math, os, sys, time, urllib.parse, urllib.request
 from shapely.geometry import Polygon, LineString, Point, box, MultiPolygon, GeometryCollection
 from shapely.ops import polygonize, unary_union, linemerge, split
 
-EP = ['https://overpass-api.de/api/interpreter', 'https://overpass.kumi.systems/api/interpreter',
-      'https://maps.mail.ru/osm/tools/overpass/api/interpreter']
-UA = {'User-Agent': 'three-cities-field-notes/1.0 (https://github.com/chaoenho-hub/three-cities)'}
+import subprocess
+PBF = {'paris': 'ile-de-france', 'nantes': 'pays-de-la-loire', 'marseille': 'provence-alpes-cote-d-azur'}
+WORK = '/tmp/osm'
 
-def overpass(q):
-    last = None
-    for attempt in range(6):
-        url = EP[attempt % len(EP)]
+def run(*a):
+    r = subprocess.run(list(a), capture_output=True, text=True)
+    if r.returncode != 0: print('  cmd fail', ' '.join(a[:3]), r.stderr[-500:], flush=True); raise RuntimeError(r.stderr[-300:])
+
+def osm_features(city, lat0, lon0, lat1, lon1, filters, tag, points=False):
+    """Extract bbox from the regional PBF, filter by tags, export to GeoJSON features -> list of (tags, geom)."""
+    from shapely.geometry import shape
+    src = os.path.join(WORK, PBF[city] + '.osm.pbf')
+    bx = os.path.join(WORK, tag + '_box.osm.pbf'); fl = os.path.join(WORK, tag + '_f.osm.pbf'); gj = os.path.join(WORK, tag + '.geojsonseq')
+    run('osmium', 'extract', '-b', '%f,%f,%f,%f' % (lon0, lat0, lon1, lat1), '--strategy', 'smart', src, '-o', bx, '--overwrite')
+    run('osmium', 'tags-filter', bx, *filters, '-o', fl, '--overwrite')
+    gt = 'point,linestring,polygon' if points else 'linestring,polygon'
+    run('osmium', 'export', fl, '-f', 'geojsonseq', '-x', 'print_record_separator=false', '-a', 'type,id', '--geometry-types=' + gt, '-o', gj, '--overwrite')
+    out = []
+    for line in open(gj):
+        line = line.strip().lstrip('\x1e')
+        if not line: continue
+        f = json.loads(line)
         try:
-            req = urllib.request.Request(url, data=urllib.parse.urlencode({'data': q}).encode(), headers=UA)
-            with urllib.request.urlopen(req, timeout=300) as r:
-                return json.loads(r.read())
-        except Exception as e:
-            last = e; print('  overpass retry', attempt, url, e, flush=True); time.sleep(15 + attempt * 10)
-    raise last
+            g = shape(f['geometry'])
+            if not g.is_valid: g = g.buffer(0)
+        except Exception: continue
+        out.append((f.get('properties', {}), g))
+    return out
 
 SITES = {
  'brtf': ((48.8575, 2.3170), 'paris', None, 'addr'),
@@ -186,53 +199,34 @@ MINOR = {'service', 'footway', 'path', 'cycleway', 'steps', 'track'}
 def bboxq(lat0, lon0, lat1, lon1):
     return '%.6f,%.6f,%.6f,%.6f' % (lat0, lon0, lat1, lon1)
 
-def find_site(sid, ll, rx, mode):
+def find_site(sid, city, ll, rx, mode):
+    import re
     lat, lon = ll
+    d = 0.015
     if mode == 'addr':
-        q = '[out:json][timeout:60];(way["addr:housenumber"="78"]["addr:street"~"Universit"](around:1500,%f,%f);node["addr:housenumber"="78"]["addr:street"~"Universit"](around:1500,%f,%f););out geom;' % (lat, lon, lat, lon)
+        feats = osm_features(city, lat - d, lon - d * 1.5, lat + d, lon + d * 1.5, ['nwr/addr:housenumber=78'], sid + '_n', points=True)
+        feats = [(t, g) for t, g in feats if 'Universit' in t.get('addr:street', '')]
     else:
-        q = '[out:json][timeout:60];nwr["name"~"%s",i](around:1500,%f,%f);out geom;' % (rx, lat, lon)
-    els = overpass(q).get('elements', [])
+        feats = osm_features(city, lat - d, lon - d * 1.5, lat + d, lon + d * 1.5, ['nwr/name'], sid + '_n', points=True)
+        R = re.compile(rx, re.I)
+        feats = [(t, g) for t, g in feats if R.search(t.get('name', '') or '')]
     best = None
-    for e in els:
-        t = e.get('tags', {})
-        if e['type'] == 'node':
-            g = Point(e['lon'], e['lat']); area = 0
-        else:
-            gg = elements_to_geoms([e])
-            if not gg: continue
-            g = gg[0][1]
-            if not isinstance(g, (Polygon, MultiPolygon)): continue
-            area = g.area
-        d = g.centroid.distance(Point(lon, lat))
-        score = (0 if ('building' in t or 'tourism' in t or 'amenity' in t or 'railway' in t or 'public_transport' in t or e['type'] != 'node' or mode == 'addr') else 1, d)
-        if best is None or score < best[0]:
-            best = (score, e, g, t)
+    for t, g in feats:
+        area = isinstance(g, (Polygon, MultiPolygon))
+        dd = g.centroid.distance(Point(lon, lat))
+        score = (0 if area else 1, 0 if ('building' in t or 'tourism' in t or 'amenity' in t or 'railway' in t or 'public_transport' in t) else 1, dd)
+        if dd > 0.012: continue
+        if best is None or score < best[0]: best = (score, t, g)
     if not best: return None
-    _, e, g, t = best
+    _, t, g = best
     c = g.representative_point() if not isinstance(g, Point) else g
-    return {'type': e['type'], 'id': e['id'], 'name': t.get('name', t.get('addr:street', '')), 'll': [round(c.y, 6), round(c.x, 6)], 'geom': g, 'tags': {k: t[k] for k in list(t)[:12]}}
+    return {'type': t.get('@type'), 'id': t.get('@id'), 'name': t.get('name', t.get('addr:street', '')), 'll': [round(c.y, 6), round(c.x, 6)], 'geom': g,
+            'tags': {k: v for k, v in list(t.items())[:12]}}
 
-def plan_query(lat0, lon0, lat1, lon1):
-    b = bboxq(lat0, lon0, lat1, lon1)
-    return ('[out:json][timeout:180][maxsize:536870912];('
-            'way["building"](%(b)s);relation["building"](%(b)s);'
-            'way["natural"="water"](%(b)s);relation["natural"="water"](%(b)s);way["waterway"="riverbank"](%(b)s);way["landuse"="basin"](%(b)s);'
-            'way["leisure"~"^(park|garden|pitch|playground)$"](%(b)s);relation["leisure"="park"](%(b)s);'
-            'way["landuse"~"^(grass|forest|recreation_ground|cemetery|meadow|village_green)$"](%(b)s);relation["landuse"~"^(forest|grass)$"](%(b)s);'
-            'way["natural"~"^(wood|scrub|grassland)$"](%(b)s);'
-            'way["highway"](%(b)s);way["railway"~"^(rail|light_rail|tram)$"](%(b)s);way["natural"="coastline"](%(b)s);'
-            ');out geom;') % {'b': b}
-
-def overview_query(lat0, lon0, lat1, lon1):
-    b = bboxq(lat0, lon0, lat1, lon1)
-    return ('[out:json][timeout:240][maxsize:1073741824];('
-            'way["natural"="water"](%(b)s);relation["natural"="water"](%(b)s);way["waterway"="riverbank"](%(b)s);way["landuse"="basin"](%(b)s);'
-            'way["leisure"="park"](%(b)s);relation["leisure"="park"](%(b)s);'
-            'way["landuse"~"^(forest|cemetery|recreation_ground)$"](%(b)s);relation["landuse"="forest"](%(b)s);way["natural"="wood"](%(b)s);relation["natural"="wood"](%(b)s);'
-            'way["highway"~"^(motorway|trunk|primary|secondary|motorway_link|trunk_link)$"](%(b)s);'
-            'way["railway"="rail"][!"service"](%(b)s);way["natural"="coastline"](%(b)s);'
-            ');out geom;') % {'b': b}
+PLAN_F = ['w/building', 'r/building', 'nwr/natural=water,coastline,wood,scrub,grassland', 'w/waterway=riverbank', 'nwr/landuse=basin,grass,forest,recreation_ground,cemetery,meadow,village_green',
+          'nwr/leisure=park,garden,pitch,playground', 'w/highway', 'w/railway=rail,light_rail,tram']
+OVER_F = ['nwr/natural=water,coastline,wood', 'w/waterway=riverbank', 'nwr/landuse=basin,forest,cemetery,recreation_ground', 'nwr/leisure=park',
+          'w/highway=motorway,trunk,primary,secondary,motorway_link,trunk_link', 'w/railway=rail']
 
 def tunnel(t): return t.get('tunnel') in ('yes', 'building_passage', 'culvert') or t.get('layer', '0').startswith('-')
 
@@ -282,27 +276,28 @@ for city, (lat0, lon0, lat1, lon1) in CITY.items():
     if only and city not in only: continue
     print('overview', city, flush=True)
     fr = Frame(lat0, lon0, lat1, lon1, 400, 300)
-    els = overpass(overview_query(lat0, lon0, lat1, lon1)).get('elements', [])
-    layers, _ = build_layers(elements_to_geoms(els), fr, 1, 0.35, 'overview')
+    feats = osm_features(city, lat0, lon0, lat1, lon1, OVER_F, city)
+    feats = [(t, g) for t, g in feats if not ('service' in t and 'railway' in t)]
+    els = feats
+    layers, _ = build_layers(feats, fr, 1, 0.35, 'overview')
     layers['bbox'] = [lat0, lon0, lat1, lon1]
     json.dump(layers, open('maps/%s.json' % city, 'w'), separators=(',', ':'))
     report[city] = {'elements': len(els), 'bytes': os.path.getsize('maps/%s.json' % city)}
-    time.sleep(8)
 
 for sid, (ll, city, rx, mode) in SITES.items():
     if only and sid not in only and city not in only: continue
     print('site', sid, flush=True)
     found = None
     if rx or mode:
-        try: found = find_site(sid, ll, rx, mode)
+        try: found = find_site(sid, city, ll, rx, mode)
         except Exception as ex: print('  find fail', ex)
-        time.sleep(4)
     lat, lon = (found['ll'] if found else ll)
     dlat = PLAN_H / 2 / 110574.0
     dlon = PLAN_W / 2 / (111320.0 * math.cos(math.radians(lat)))
     fr = Frame(lat - dlat, lon - dlon, lat + dlat, lon + dlon, PLAN_W, PLAN_H)
-    els = overpass(plan_query(lat - dlat, lon - dlon, lat + dlat, lon + dlon)).get('elements', [])
-    geoms = elements_to_geoms(els)
+    m = 0.002
+    geoms = osm_features(city, lat - dlat - m, lon - dlon - m, lat + dlat + m, lon + dlon + m, PLAN_F, sid)
+    els = geoms
     layers, bld = build_layers(geoms, fr, 0, 0.7, 'plan')
     # highlight: buildings inside the found area, or the building containing / nearest the point
     hl, rest = [], []
@@ -331,6 +326,5 @@ for sid, (ll, city, rx, mode) in SITES.items():
     report[sid] = {'found': {k: v for k, v in found.items() if k != 'geom'} if found else None, 'll': [lat, lon],
                    'buildings': len(bld), 'highlight': len(hl), 'elements': len(els), 'bytes': os.path.getsize('maps/%s.json' % sid)}
     print('  ', json.dumps(report[sid], ensure_ascii=False)[:400], flush=True)
-    time.sleep(8)
 
 json.dump(report, open('maps/report.json', 'w'), ensure_ascii=False, indent=1)
