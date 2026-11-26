@@ -30,3 +30,7 @@
 - 歐洲與地中海文明博物館：Bertrand SOUBEYRAND，CC BY-SA 4.0，[檔案頁面](https://commons.wikimedia.org/wiki/File:Ben_Mahi_ed-Din_Abd-el-Kader_au_Mucem_2022.jpg)
 - La Friche la Belle de Mai：Cecile30000，CC BY-SA 4.0，[檔案頁面](https://commons.wikimedia.org/wiki/File:Marseille_Friche_la_Belle_de_Mai_Toit_terrasse.jpg)
 - Camargo 基金會：Pozzolana，CC BY-SA 4.0，[檔案頁面](https://commons.wikimedia.org/wiki/File:Camargo_Foundation_seaside.jpg)
+
+## 地圖資料
+
+城市地圖與周邊街廓圖（maps/）由 tools/build_maps.py 從 OpenStreetMap 資料產生。地圖資料 © OpenStreetMap contributors，以 ODbL 授權：https://www.openstreetmap.org/copyright
