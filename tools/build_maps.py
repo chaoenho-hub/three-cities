@@ -167,6 +167,8 @@ def line_path(gs, nd, tol):
 
 def sea_from_coast(coast_lines, bb):
     """Split bbox polygon by coastline; pieces on the right side of coastline direction are sea."""
+    islands = [g for g in coast_lines if isinstance(g, (Polygon, MultiPolygon))]
+    coast_lines = [l for g in coast_lines for l in lines(g)]
     if not coast_lines: return None
     merged = linemerge(unary_union(coast_lines))
     segs = lines(merged)
@@ -188,7 +190,10 @@ def sea_from_coast(coast_lines, bb):
                 if pc.contains(r): votes[i] += 1
                 if pc.contains(l): votes[i] -= 1
     sea = [pieces[i] for i, v in votes.items() if v > 0]
-    return unary_union(sea) if sea else None
+    if not sea: return None
+    sea = unary_union(sea)
+    if islands: sea = sea.difference(unary_union(islands))
+    return sea
 
 WATER = lambda t: t.get('natural') == 'water' or t.get('waterway') == 'riverbank' or t.get('landuse') == 'basin' or t.get('water') in ('river', 'canal', 'harbour', 'basin')
 GREEN = lambda t: t.get('leisure') in ('park', 'garden', 'pitch', 'playground') or t.get('landuse') in ('grass', 'forest', 'recreation_ground', 'cemetery', 'meadow', 'village_green') or t.get('natural') in ('wood', 'scrub', 'grassland', 'heath')
@@ -256,7 +261,8 @@ def build_layers(geoms, fr, nd, tol, kind):
                     green.append(g.intersection(bbg))
         except Exception as ex:
             print('  layer fail', ex)
-    sea = sea_from_coast(coast, bbg)
+    try: sea = sea_from_coast(coast, bbg)
+    except Exception as ex: print('  sea fail', ex); sea = None
     if sea is not None: water.append(sea)
     T = fr.tx
     out = {
