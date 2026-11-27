@@ -55,6 +55,7 @@ svg.map{width:100%;max-width:340px;height:auto;display:block;margin:0 auto}
 .lynch b{display:block;font-size:1rem}
 .ico{display:block;width:100%;max-width:7.5rem;height:auto;margin:0 0 .4rem;color:var(--accent)}
 .ico .s{fill:currentColor;stroke:none}.ico .o{fill:none;stroke:currentColor;stroke-width:1.4;stroke-linejoin:round;stroke-linecap:round}.ico .o{stroke-width:1.8}.ico .dash{stroke-dasharray:13 5}.ico .ring{fill:var(--surface);stroke:currentColor;stroke-width:1.8}
+.elrows .ico{color:var(--elc,var(--accent));transition:color .2s}
 .ico.ico-s{width:2.8rem;max-width:none;height:auto;flex:none;margin:0}.ico.ico-s .o,.ico.ico-s .ring{stroke-width:2.2}
 .elrow .eh .lead{display:flex;align-items:center;gap:.5rem}
 .lynch .en{display:block;font-size:.72rem;letter-spacing:.05em;text-transform:uppercase}
@@ -535,7 +536,7 @@ $("f-site").addEventListener("change",function(){presetTags($("f-site").value)})
 function setChips(id,vals){$(id).querySelectorAll("button.chip[data-k]").forEach(function(b){b.setAttribute("aria-pressed",vals.indexOf(b.dataset.k)>=0?"true":"false")})}
 function getChips(id){return Array.prototype.map.call($(id).querySelectorAll('button.chip[aria-pressed="true"]'),function(b){return b.dataset.k})}
 var recPlanFor=null;
-function renderRecPlan(site){tlSync(site,true);var s=SBY[site],fig=$("rec-plan");if(!fig)return;
+function renderRecPlan(site){tlSync(site,true);var s=SBY[site],fig=$("rec-plan");if(s)$("f-el").style.setProperty("--elc",CITY[s.city].c);if(!fig)return;
   if(!s||!s.ll){fig.hidden=true;recPlanFor=null;return}
   if(recPlanFor===site&&!fig.hidden)return; recPlanFor=site; fig.hidden=false; fig.style.setProperty("--c",siteColor(s));
   $("rec-plan-box").textContent="載入周邊街廓圖…";
