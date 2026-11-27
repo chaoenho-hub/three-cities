@@ -86,7 +86,7 @@ ol.flow li::before{content:counter(f);display:inline-grid;place-items:center;wid
 .maptabs button[aria-pressed="true"]{background:var(--ink);color:var(--surface);border-color:var(--ink)}
 .citymap{width:100%;height:auto;display:block;border-radius:.4rem;background:var(--bg)}
 .citymap .ow,.plan .ow{fill:var(--water)}.citymap .og,.plan .og{fill:var(--green)}.citymap .ora{fill:none;stroke:var(--muted);stroke-width:1.1;opacity:.55;stroke-linecap:round;stroke-linejoin:round}.citymap .orl,.plan .orl{fill:none;stroke:var(--muted);stroke-width:.8;stroke-dasharray:3 2;opacity:.7}
-.plan{display:block;width:100%;height:auto;border-radius:.45rem;background:var(--bg)}.plan .bld{fill:var(--bld);fill-rule:evenodd}.plan .hl{fill:var(--c,var(--accent));fill-rule:evenodd}.plan .area{fill:color-mix(in srgb,var(--c,var(--accent)) 18%,transparent);stroke:var(--c,var(--accent));stroke-width:3;stroke-dasharray:10 6}.plan .ra,.plan .rb,.plan .rc{fill:none;stroke:var(--road);stroke-linecap:round;stroke-linejoin:round}.plan .ra{stroke-width:9}.plan .rb{stroke-width:5}.plan .rc{stroke-width:1.6;stroke:var(--line)}.plan .lab{font-size:15px;fill:var(--muted)}.plan .pin{fill:none;stroke:var(--c,var(--accent));stroke-width:4}
+.plan{display:block;width:100%;height:auto;border-radius:.45rem;background:var(--bg)}.plan .bld{fill:var(--bld);fill-rule:evenodd}.plan .hl{fill:var(--lynch);fill-rule:evenodd}.plan .area{fill:color-mix(in srgb,var(--lynch) 18%,transparent);stroke:var(--lynch);stroke-width:3;stroke-dasharray:10 6}.plan .ra,.plan .rb,.plan .rc{fill:none;stroke:var(--road);stroke-linecap:round;stroke-linejoin:round}.plan .ra{stroke-width:9}.plan .rb{stroke-width:5}.plan .rc{stroke-width:1.6;stroke:var(--line)}.plan .lab{font-size:15px;fill:var(--muted)}.plan .pin{fill:none;stroke:var(--lynch);stroke-width:4}
 .tl{position:relative;margin:.2rem calc(-1*max(16px,env(safe-area-inset-left,0px))) 0}
 .tl::before{content:"";position:absolute;left:50%;top:0;transform:translateX(-50%);border:7px solid transparent;border-top-color:var(--ink);z-index:2;pointer-events:none}
 .tl::after{content:"";position:absolute;inset:0 auto 0 0;width:100%;pointer-events:none;background:linear-gradient(90deg,var(--bg),transparent 12%,transparent 88%,var(--bg))}
@@ -359,7 +359,7 @@ function layer(cls,d){d=okPath(d);return d?'<path class="'+cls+'" d="'+d+'"/>':'
 function planSVG(d,s){
   var W=900,H=600,h='<svg class="plan" viewBox="0 0 900 600" role="img" aria-label="'+esc(s.zh)+'周邊街廓圖" style="--c:'+siteColor(s)+'">';
   h+=layer("og",d.green)+layer("ow",d.water)+layer("rc",d.rc)+layer("rb",d.rb)+layer("ra",d.ra)+layer("orl",d.rail)+layer("bld",d.bld)+layer("area",d.area)+layer("hl",d.hl);
-  if(!okPath(d.hl))h+='<circle cx="450" cy="300" r="26" fill="var(--bg)" opacity=".7"/><circle class="pin" cx="450" cy="300" r="22"/><circle cx="450" cy="300" r="8" fill="var(--c,var(--accent))"/>';
+  if(!okPath(d.hl))h+='<circle cx="450" cy="300" r="26" fill="var(--bg)" opacity=".7"/><circle class="pin" cx="450" cy="300" r="22"/><circle cx="450" cy="300" r="8" fill="var(--lynch)"/>';
   h+='<g transform="translate(24,'+(H-26)+')"><rect x="-8" y="-22" width="150" height="38" rx="6" fill="var(--bg)" opacity=".85"/><path d="M0 0 h100" stroke="var(--ink)" stroke-width="3"/><path d="M0 -7 v14 M100 -7 v14" stroke="var(--ink)" stroke-width="2"/><text class="lab" x="110" y="6">100 m</text></g>';
   h+='<g transform="translate('+(W-34)+',40)"><circle r="22" fill="var(--bg)" opacity=".85"/><path d="M0 -16 L7 6 L0 1 L-7 6 Z" fill="var(--ink)"/><text class="lab" x="-5" y="20" style="font-size:12px">N</text></g>';
   h+='<text class="lab" x="'+(W-10)+'" y="'+(H-10)+'" text-anchor="end" style="font-size:12px;paint-order:stroke;stroke:var(--bg);stroke-width:4px">© OpenStreetMap contributors</text>';
@@ -441,7 +441,7 @@ function openSite(id){
   var h='<button class="btn close" type="button" data-close>關閉</button>';
   h+='<p class="eyebrow">'+esc(CITY[s.city].zh)+' · '+esc(s.dates.join("、"))+' · '+esc(s.group)+'</p><div class="ttl" style="--c:'+siteColor(s)+'"><span class="no">'+sicon(s.id)+'</span><h2 style="margin-top:.2rem">'+esc(s.zh)+'<br><span class="en">'+esc(s.en)+'</span></h2></div>';
   if(s.photo&&/^photos\/sites\/[\w-]+\.jpg$/.test(s.photo.src)){var ph=s.photo;h+='<figure class="sphoto"><img src="'+esc(ph.src)+'" alt="'+esc(s.zh+(ph.alt?'：'+ph.alt:''))+'" loading="lazy" decoding="async"><figcaption>'+(ph.alt?esc(ph.alt)+'。':'')+'攝影：'+esc(ph.by)+' · '+esc(ph.lic)+(ph.page&&/^https:\/\//.test(ph.page)?' · <a href="'+esc(ph.page)+'" target="_blank" rel="noopener">Wikimedia Commons</a>':'')+'</figcaption></figure>'}
-  if(s.ll)h+='<figure class="splan" style="--c:'+siteColor(s)+'"><div class="planbox" id="dlg-plan">載入周邊街廓圖…</div><figcaption>周邊街廓 900 × 600 m。實心色塊為建築，'+(["samoa","qc","lieux"].indexOf(id)>=0?'圓圈為大致位置':'彩色為地點所在建築')+'。地圖資料 © OpenStreetMap contributors（ODbL）。</figcaption></figure>';
+  if(s.ll)h+='<figure class="splan" style="--c:'+siteColor(s)+'"><div class="planbox" id="dlg-plan">載入周邊街廓圖…</div><figcaption>周邊街廓 900 × 600 m。實心色塊為建築，'+(["samoa","qc","lieux"].indexOf(id)>=0?'紅色圓圈為大致位置':'紅色為地點所在建築')+'。地圖資料 © OpenStreetMap contributors（ODbL）。</figcaption></figure>';
   if(s.intro)h+='<p class="intro">'+esc(s.intro)+'</p>';
   if(s.url&&/^https:\/\//.test(s.url))h+='<p class="weblink"><a href="'+esc(s.url)+'" target="_blank" rel="noopener">官方網站 ↗</a> <span class="en">'+esc(s.url.replace(/^https:\/\/(www\.)?/,"").replace(/\/$/,""))+'</span></p>';
   h+='<div class="chips">'+s.q.map(function(q){return '<span class="tag">'+q+'</span>'}).join("")+s.el.map(function(k){return '<span class="tag">'+esc(elName(k))+'</span>'}).join("")+'</div>';
@@ -539,7 +539,7 @@ function renderRecPlan(site){tlSync(site,true);var s=SBY[site],fig=$("rec-plan")
   if(!s||!s.ll){fig.hidden=true;recPlanFor=null;return}
   if(recPlanFor===site&&!fig.hidden)return; recPlanFor=site; fig.hidden=false; fig.style.setProperty("--c",siteColor(s));
   $("rec-plan-box").textContent="載入周邊街廓圖…";
-  $("rec-plan-cap").textContent=s.zh+" · 周邊街廓 900 × 600 m。實心色塊為建築，"+(["samoa","qc","lieux"].indexOf(site)>=0?"圓圈為大致位置":"彩色為地點所在建築")+"。地圖資料 © OpenStreetMap contributors（ODbL）。";
+  $("rec-plan-cap").textContent=s.zh+" · 周邊街廓 900 × 600 m。實心色塊為建築，"+(["samoa","qc","lieux"].indexOf(site)>=0?"紅色圓圈為大致位置":"紅色為地點所在建築")+"。地圖資料 © OpenStreetMap contributors（ODbL）。";
   loadMap(site,function(md){if(recPlanFor!==site)return;var b=$("rec-plan-box");if(md)b.innerHTML=planSVG(md,s);else b.textContent="街廓圖暫時無法載入。"})}
 function presetTags(site){renderRecPlan(site);if(state.editing)return;var s=SBY[site];if(!s)return;setChips("f-q",s.q);setChips("f-el",[])}
 function startNew(site){state.editing=null;$("f-site").value=site||SITES[0].id;$("f-text").value="";state.photos=[];renderFormPhotos();presetTags($("f-site").value);$("save").textContent="儲存記錄";$("save-status").textContent=""}
