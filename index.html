@@ -87,6 +87,20 @@ ol.flow li::before{content:counter(f);display:inline-grid;place-items:center;wid
 .citymap{width:100%;height:auto;display:block;border-radius:.4rem;background:var(--bg)}
 .citymap .ow,.plan .ow{fill:var(--water)}.citymap .og,.plan .og{fill:var(--green)}.citymap .ora{fill:none;stroke:var(--muted);stroke-width:1.1;opacity:.55;stroke-linecap:round;stroke-linejoin:round}.citymap .orl,.plan .orl{fill:none;stroke:var(--muted);stroke-width:.8;stroke-dasharray:3 2;opacity:.7}
 .plan{display:block;width:100%;height:auto;border-radius:.45rem;background:var(--bg)}.plan .bld{fill:var(--bld);fill-rule:evenodd}.plan .hl{fill:var(--c,var(--accent));fill-rule:evenodd}.plan .area{fill:color-mix(in srgb,var(--c,var(--accent)) 18%,transparent);stroke:var(--c,var(--accent));stroke-width:3;stroke-dasharray:10 6}.plan .ra,.plan .rb,.plan .rc{fill:none;stroke:var(--road);stroke-linecap:round;stroke-linejoin:round}.plan .ra{stroke-width:9}.plan .rb{stroke-width:5}.plan .rc{stroke-width:1.6;stroke:var(--line)}.plan .lab{font-size:15px;fill:var(--muted)}.plan .pin{fill:none;stroke:var(--c,var(--accent));stroke-width:4}
+.tl{position:relative;margin:.2rem calc(-1*max(16px,env(safe-area-inset-left,0px))) 0}
+.tl::before{content:"";position:absolute;left:50%;top:0;transform:translateX(-50%);border:7px solid transparent;border-top-color:var(--ink);z-index:2;pointer-events:none}
+.tl::after{content:"";position:absolute;inset:0 auto 0 0;width:100%;pointer-events:none;background:linear-gradient(90deg,var(--bg),transparent 12%,transparent 88%,var(--bg))}
+.tl-track{display:flex;gap:.5rem;overflow-x:auto;scroll-snap-type:x mandatory;padding:.7rem calc(50% - 3.5rem) .7rem;scrollbar-width:none;cursor:grab;touch-action:pan-x;user-select:none;-webkit-user-select:none}
+.tl-track::-webkit-scrollbar{display:none}
+.tl-track.drag{cursor:grabbing;scroll-snap-type:none}
+.tl-day{flex:0 0 7rem;scroll-snap-align:center;background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--c);border-radius:.5rem;padding:.35rem .4rem .45rem;min-width:0;transition:transform .15s,opacity .15s;opacity:.6}
+.tl-day.on{opacity:1;box-shadow:0 0 0 2px var(--c);transform:translateY(-2px)}
+.tl-date{font-weight:700;font-variant-numeric:tabular-nums;line-height:1.2}.tl-date small{font-weight:400;color:var(--muted);margin-left:.25rem;font-size:.72rem}
+.tl-city{font-size:.68rem;color:var(--c);font-weight:700;letter-spacing:.04em}
+.tl-site{display:block;width:100%;font:inherit;font-size:.74rem;text-align:left;border:1px solid var(--line);border-radius:.35rem;background:var(--bg);color:var(--ink);padding:.22rem .35rem;margin-top:.25rem;cursor:pointer;line-height:1.3;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow-wrap:anywhere}
+.tl-site[aria-pressed="true"]{background:var(--c);border-color:var(--c);color:var(--accent-ink);font-weight:500}
+.tl-now{font-size:.88rem;margin:.1rem 0 0;min-height:1.4em}.tl-now b{color:var(--ink)}
+@media (prefers-reduced-motion:reduce){.tl-day{transition:none}}
 .splan{margin:.8rem 0 .2rem}.splan figcaption{font-size:.72rem;color:var(--muted);margin-top:.3rem;line-height:1.5}.planbox{min-height:6rem;color:var(--muted);font-size:.85rem}
 .citymap .river{fill:none;stroke:var(--water);stroke-linecap:round;stroke-linejoin:round}
 .citymap .sea{fill:var(--water);opacity:.55}
@@ -249,8 +263,10 @@ footer{margin-top:3rem;font-size:.78rem;color:var(--muted)}
   <h2>現場記錄 <span class="en">Field record</span></h2>
   <div id="rec-banner" class="banner">正在連線資料庫…</div>
   <form id="rec-form" hidden>
-    <label class="f" for="f-site">站點 Site</label>
-    <select id="f-site" required></select>
+    <label class="f" id="tl-lab">站點 Site <span class="en">左右拖曳時間軸到指定日期，再點選站點</span></label>
+    <div class="tl" role="group" aria-labelledby="tl-lab"><div class="tl-track" id="tl-track"></div></div>
+    <p class="tl-now" id="tl-now" aria-live="polite"></p>
+    <select id="f-site" required hidden></select>
     <figure class="splan" id="rec-plan" hidden><div class="planbox" id="rec-plan-box"></div><figcaption id="rec-plan-cap"></figcaption></figure>
     <label class="f">五種城市意象 <span class="en">Five elements of the city image</span></label>
     <p style="font-size:.85rem;color:var(--muted);margin:0 0 .4rem">點選這則記錄觀察到的意象，並可為每種意象拍照。</p>
@@ -321,7 +337,7 @@ var VIEWS=["overview","route","record","handbook"];
 function show(){var v=(location.hash||"").slice(1); if(VIEWS.indexOf(v)<0)v="overview";
   VIEWS.forEach(function(x){$("v-"+x).hidden=(x!==v)});
   document.querySelectorAll("nav.tabs a").forEach(function(a){if(a.dataset.v===v)a.setAttribute("aria-current","page");else a.removeAttribute("aria-current")});
-  if(v==="handbook")renderHandbook(); if(v==="route")renderRoute(); if(v==="record")renderRecent();}
+  if(v==="handbook")renderHandbook(); if(v==="route")renderRoute(); if(v==="record"){renderRecent();requestAnimationFrame(function(){tlSync($("f-site").value,false)})}}
 window.addEventListener("hashchange",function(){show();window.scrollTo(0,0)});
 
 /* ---------- route ---------- */
@@ -474,6 +490,42 @@ function fillSiteSelect(){
   $("f-site").innerHTML=html;
 }
 fillSiteSelect();
+/* ---------- timeline site picker ---------- */
+var tlDay=0, tlSettle=null, tlProg=false;
+function dayCity(d){return SBY[d.sites[0]].city}
+function buildTimeline(){
+  $("tl-track").innerHTML=DATA.days.map(function(d,i){var c=dayCity(d);
+    return '<div class="tl-day" data-day="'+i+'" style="--c:'+CITY[c].c+'"><div class="tl-date">'+esc(d.date)+'<small>'+esc(d.wd)+'</small></div><div class="tl-city">'+CITY[c].zh+'</div>'+
+      d.sites.map(function(id){var s=SBY[id];return '<button type="button" class="tl-site" data-site="'+id+'" data-day="'+i+'" aria-pressed="false" title="'+esc(s.zh)+'">'+esc(s.zh)+'</button>'}).join("")+'</div>'}).join("");
+}
+buildTimeline();
+function tlMark(site){
+  document.querySelectorAll("#tl-track .tl-day").forEach(function(el){el.classList.toggle("on",+el.dataset.day===tlDay)});
+  document.querySelectorAll("#tl-track .tl-site").forEach(function(b){b.setAttribute("aria-pressed",(b.dataset.site===site&&+b.dataset.day===tlDay)?"true":"false")});
+  var s=SBY[site],d=DATA.days[tlDay]; $("tl-now").innerHTML=s?'<b>'+esc(d.date)+'（'+esc(d.wd)+'）'+esc(s.zh)+'</b> <span class="en">'+esc(s.en)+' · '+CITY[s.city].zh+'</span>':"";
+}
+function tlCenter(i,smooth){var tr=$("tl-track"),el=tr.querySelector('.tl-day[data-day="'+i+'"]');if(!el||!tr.clientWidth)return;
+  tlProg=true; tr.scrollTo({left:el.offsetLeft+el.offsetWidth/2-tr.clientWidth/2,behavior:smooth?"smooth":"auto"}); setTimeout(function(){tlProg=false},smooth?600:50)}
+function tlSync(site,smooth){var d=DATA.days[tlDay];
+  if(!d||d.sites.indexOf(site)<0){var i=DATA.days.findIndex(function(x){return x.sites.indexOf(site)>=0});if(i>=0)tlDay=i}
+  tlMark(site); tlCenter(tlDay,smooth);}
+function tlPick(site,day){tlDay=day; if($("f-site").value!==site){$("f-site").value=site;$("f-site").dispatchEvent(new Event("change"))} else tlMark(site); tlCenter(day,true)}
+function tlNearest(){var tr=$("tl-track"),mid=tr.scrollLeft+tr.clientWidth/2,best=0,bd=1e9;
+  tr.querySelectorAll(".tl-day").forEach(function(el){var c=el.offsetLeft+el.offsetWidth/2,dd=Math.abs(c-mid);if(dd<bd){bd=dd;best=+el.dataset.day}});return best}
+function tlOnSettle(){if(tlProg||tlDrag.on)return;var i=tlNearest();if(i===tlDay)return;var d=DATA.days[i],cur=$("f-site").value;
+  tlPick(d.sites.indexOf(cur)>=0?cur:d.sites[0],i)}
+var tlDrag={on:false,x:0,sl:0,moved:false};
+(function(){var tr=$("tl-track");
+  tr.addEventListener("scroll",function(){clearTimeout(tlSettle);tlSettle=setTimeout(tlOnSettle,140)},{passive:true});
+  tr.addEventListener("pointerdown",function(e){if(e.pointerType!=="mouse"||e.button!==0)return;tlDrag={on:true,x:e.clientX,sl:tr.scrollLeft,moved:false};tr.classList.add("drag")});
+  window.addEventListener("pointermove",function(e){if(!tlDrag.on)return;var dx=e.clientX-tlDrag.x;if(Math.abs(dx)>4)tlDrag.moved=true;tr.scrollLeft=tlDrag.sl-dx});
+  window.addEventListener("pointerup",function(){if(!tlDrag.on)return;tlDrag.on=false;tr.classList.remove("drag");clearTimeout(tlSettle);tlSettle=setTimeout(tlOnSettle,180)});
+  tr.addEventListener("click",function(e){if(tlDrag.moved){tlDrag.moved=false;e.preventDefault();return}
+    var b=e.target.closest(".tl-site");if(b){tlPick(b.dataset.site,+b.dataset.day);return}
+    var col=e.target.closest(".tl-day");if(col){var i=+col.dataset.day,d=DATA.days[i],cur=$("f-site").value;tlPick(d.sites.indexOf(cur)>=0?cur:d.sites[0],i)}});
+  tr.addEventListener("keydown",function(e){if(e.key!=="ArrowLeft"&&e.key!=="ArrowRight")return;var i=Math.max(0,Math.min(DATA.days.length-1,tlDay+(e.key==="ArrowRight"?1:-1)));if(i===tlDay)return;e.preventDefault();
+    var d=DATA.days[i];tlPick(d.sites[0],i);var b=tr.querySelector('.tl-site[data-day="'+i+'"]');if(b)b.focus({preventScroll:true})});
+})();
 $("f-el").innerHTML=EL.map(function(e){return '<div class="elrow"><div class="eh"><span class="lead">'+icon(e.k,"ico ico-s")+'<button type="button" class="chip" data-k="'+e.k+'" aria-pressed="false">'+esc(e.zh)+' '+esc(e.en)+'</button></span>'+
   '<input type="file" accept="image/*" multiple id="ph-'+e.k+'" data-elph="'+e.k+'" hidden><label for="ph-'+e.k+'" class="btn phbtn" data-phl="'+e.k+'">＋ 拍照／上傳</label></div>'+
   '<div class="photos" id="php-'+e.k+'"></div></div>'}).join("");
@@ -483,7 +535,7 @@ $("f-site").addEventListener("change",function(){presetTags($("f-site").value)})
 function setChips(id,vals){$(id).querySelectorAll("button.chip[data-k]").forEach(function(b){b.setAttribute("aria-pressed",vals.indexOf(b.dataset.k)>=0?"true":"false")})}
 function getChips(id){return Array.prototype.map.call($(id).querySelectorAll('button.chip[aria-pressed="true"]'),function(b){return b.dataset.k})}
 var recPlanFor=null;
-function renderRecPlan(site){var s=SBY[site],fig=$("rec-plan");if(!fig)return;
+function renderRecPlan(site){tlSync(site,true);var s=SBY[site],fig=$("rec-plan");if(!fig)return;
   if(!s||!s.ll){fig.hidden=true;recPlanFor=null;return}
   if(recPlanFor===site&&!fig.hidden)return; recPlanFor=site; fig.hidden=false; fig.style.setProperty("--c",siteColor(s));
   $("rec-plan-box").textContent="載入周邊街廓圖…";
@@ -612,7 +664,7 @@ async function setupMic(){
 function bootStatic(){
   $("rec-banner").textContent="這是公開展示版。見習期間（116/5/30–6/16），我以田野工具在現場記錄，整理後同步到這裡；下方為記錄介面的示範畫面。";
   $("rec-form").hidden=false; startNew();
-  $("rec-form").querySelectorAll("input,textarea,select,button").forEach(function(x){if(x.id!=="f-site")x.disabled=true});
+  $("rec-form").querySelectorAll("input,textarea,select,button").forEach(function(x){if(x.id!=="f-site"&&!x.classList.contains("tl-site"))x.disabled=true});
   document.querySelectorAll("[data-phl]").forEach(function(l){l.setAttribute("aria-disabled","true")});
   fetch("data/records.json",{cache:"no-store"}).then(function(r){return r.ok?r.json():null}).then(function(d){
     if(!d)return; state.notes=Array.isArray(d.notes)?d.notes:[]; state.drafts=d.drafts&&typeof d.drafts==="object"?d.drafts:{};
