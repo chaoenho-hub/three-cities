@@ -251,6 +251,7 @@ footer{margin-top:3rem;font-size:.78rem;color:var(--muted)}
   <form id="rec-form" hidden>
     <label class="f" for="f-site">站點 Site</label>
     <select id="f-site" required></select>
+    <figure class="splan" id="rec-plan" hidden><div class="planbox" id="rec-plan-box"></div><figcaption id="rec-plan-cap"></figcaption></figure>
     <label class="f">五種城市意象 <span class="en">Five elements of the city image</span></label>
     <p style="font-size:.85rem;color:var(--muted);margin:0 0 .4rem">點選這則記錄觀察到的意象，並可為每種意象拍照。</p>
     <div class="elrows" id="f-el"></div>
@@ -481,9 +482,16 @@ $("f-q").innerHTML=QS.map(function(q){return '<button type="button" class="chip"
 $("f-site").addEventListener("change",function(){presetTags($("f-site").value)});
 function setChips(id,vals){$(id).querySelectorAll("button.chip[data-k]").forEach(function(b){b.setAttribute("aria-pressed",vals.indexOf(b.dataset.k)>=0?"true":"false")})}
 function getChips(id){return Array.prototype.map.call($(id).querySelectorAll('button.chip[aria-pressed="true"]'),function(b){return b.dataset.k})}
-function presetTags(site){if(state.editing)return;var s=SBY[site];if(!s)return;setChips("f-q",s.q);setChips("f-el",[])}
+var recPlanFor=null;
+function renderRecPlan(site){var s=SBY[site],fig=$("rec-plan");if(!fig)return;
+  if(!s||!s.ll){fig.hidden=true;recPlanFor=null;return}
+  if(recPlanFor===site&&!fig.hidden)return; recPlanFor=site; fig.hidden=false; fig.style.setProperty("--c",siteColor(s));
+  $("rec-plan-box").textContent="載入周邊街廓圖…";
+  $("rec-plan-cap").textContent=s.zh+" · 周邊街廓 900 × 600 m。實心色塊為建築，"+(["samoa","qc","lieux"].indexOf(site)>=0?"圓圈為大致位置":"彩色為地點所在建築")+"。地圖資料 © OpenStreetMap contributors（ODbL）。";
+  loadMap(site,function(md){if(recPlanFor!==site)return;var b=$("rec-plan-box");if(md)b.innerHTML=planSVG(md,s);else b.textContent="街廓圖暫時無法載入。"})}
+function presetTags(site){renderRecPlan(site);if(state.editing)return;var s=SBY[site];if(!s)return;setChips("f-q",s.q);setChips("f-el",[])}
 function startNew(site){state.editing=null;$("f-site").value=site||SITES[0].id;$("f-text").value="";state.photos=[];renderFormPhotos();presetTags($("f-site").value);$("save").textContent="儲存記錄";$("save-status").textContent=""}
-function loadEdit(id){var n=state.notes.find(function(x){return x.id===id});if(!n)return;state.editing=id;$("f-site").value=n.site;setChips("f-el",n.el||[]);setChips("f-q",n.q||[]);$("f-text").value=n.text||"";state.photos=(n.photos||[]).map(function(p){return {id:p.id,url:p.url,el:p.el||""}});renderFormPhotos();$("save").textContent="更新記錄";$("rec-form").scrollIntoView({block:"start"})}
+function loadEdit(id){var n=state.notes.find(function(x){return x.id===id});if(!n)return;state.editing=id;$("f-site").value=n.site;renderRecPlan(n.site);setChips("f-el",n.el||[]);setChips("f-q",n.q||[]);$("f-text").value=n.text||"";state.photos=(n.photos||[]).map(function(p){return {id:p.id,url:p.url,el:p.el||""}});renderFormPhotos();$("save").textContent="更新記錄";$("rec-form").scrollIntoView({block:"start"})}
 $("reset").addEventListener("click",function(){startNew($("f-site").value)});
 function renderFormPhotos(){
   EL.forEach(function(e){$("php-"+e.k).innerHTML=state.photos.map(function(p,i){if(p.el!==e.k)return "";return '<figure>'+(p.url?'<img src="'+esc(p.url)+'" alt="'+esc(e.zh)+'">':'<img alt="上傳中">')+'<button type="button" class="btn" style="font-size:.75rem;padding:.2rem .5rem;margin-top:.2rem" data-rm="'+i+'">移除</button></figure>'}).join("")});
