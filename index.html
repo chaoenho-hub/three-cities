@@ -549,7 +549,7 @@ function renderHandbook(){
         h+='<div class="draft"><b>手冊段落</b> <span class="en">Handbook text</span>';
         if(state.canWrite){
           h+='<label class="f" for="dz-'+s.id+'">中文</label><textarea id="dz-'+s.id+'">'+esc(dr&&dr.zh||"")+'</textarea><label class="f" for="de-'+s.id+'">English</label><textarea id="de-'+s.id+'">'+esc(dr&&dr.en||"")+'</textarea>'+
-             '<div class="row" style="margin-top:.5rem">'+(state.sample&&sn.length?'<button class="btn" type="button" data-gen="'+s.id+'">請 Claude 依筆記起草</button>':'')+'<button class="btn primary" type="button" data-savedr="'+s.id+'">儲存段落</button><span class="status" id="ds-'+s.id+'"></span></div>';
+             '<div class="row" style="margin-top:.5rem">'+(state.sample&&sn.length?'<button class="btn" type="button" data-gen="'+s.id+'">請 AI 工具依筆記起草</button>':'')+'<button class="btn primary" type="button" data-savedr="'+s.id+'">儲存段落</button><span class="status" id="ds-'+s.id+'"></span></div>';
         }else{h+='<p>'+esc(dr.zh||"")+'</p><p class="en">'+esc(dr.en||"")+'</p>'}
         h+='</div>';
       }
@@ -560,7 +560,7 @@ function renderHandbook(){
 }
 $("hb").addEventListener("click",async function(e){
   var g=e.target.closest("[data-gen]"), sv=e.target.closest("[data-savedr]");
-  if(g){var id=g.dataset.gen,s=SBY[id],st=$("ds-"+id); g.disabled=true; st.textContent="Claude 起草中…"; st.className="status";
+  if(g){var id=g.dataset.gen,s=SBY[id],st=$("ds-"+id); g.disabled=true; st.textContent="AI 工具起草中…"; st.className="status";
     var notes=notesFor(id).map(function(n,i){return "筆記"+(i+1)+"（元素："+(n.el||[]).join("、")+"；問題："+(n.q||[]).join("、")+"）："+(n.text||"")+(n.photos||[]).map(function(p){return p.el?"［照片："+elName(p.el)+"］":""}).join("")}).join("\n");
     var prompt="你是建築與都市研究的編輯，協助一位臺灣建築設計師撰寫圖解式案例手冊《文化驅動的都市再生：法國三城觀察》。\n"+
       "站點："+s.zh+"（"+s.en+"），城市："+CITY[s.city].zh+"，尺度："+DATA.cityLede[s.city]+"\n行前問題："+s.ask+"\n"+
@@ -569,7 +569,7 @@ $("hb").addEventListener("click",async function(e){
       "請只根據現場筆記撰寫，不要加入筆記沒有的事實或數據；若筆記不足以回答行前問題，在段落最後用一句話指出還需要補充什麼。"+
       "回傳 JSON：{\"zh\":\"繁體中文段落，180 至 260 字，第一人稱，說明觀察、對應的城市意象與研究問題，以及對臺灣的啟示\",\"en\":\"同內容的英文段落，100 至 150 字\"}";
     try{var out=await state.sample.json(prompt,{modelTier:"default"}); if(out&&typeof out.zh==="string"){$("dz-"+id).value=out.zh;$("de-"+id).value=typeof out.en==="string"?out.en:"";st.textContent="已起草，請修改後按「儲存段落」";st.className="status ok"}else{st.textContent="起草格式不完整，請再試一次";st.className="status err"}}
-    catch(err){st.textContent=err&&err.code==="not_granted"?"未允許使用 Claude":"起草失敗，請稍後再試";st.className="status err"}
+    catch(err){st.textContent=err&&err.code==="not_granted"?"未允許使用 AI 工具":"起草失敗，請稍後再試";st.className="status err"}
     g.disabled=false; return}
   if(sv){var id2=sv.dataset.savedr,st2=$("ds-"+id2); sv.disabled=true; st2.textContent="儲存中…"; st2.className="status";
     try{await state.db.collection("drafts").doc(id2).set({zh:$("dz-"+id2).value,en:$("de-"+id2).value,updatedAt:new Date().toISOString()});st2.textContent="已儲存";st2.className="status ok"}
